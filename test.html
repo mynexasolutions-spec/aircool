@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoolFix — AC & Appliance Repair Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #3a9bd5;
+    --blue-dark: #2478b5;
+    --blue-light: #5eb4e8;
+    --blue-pale: #e8f5fd;
+    --blue-card: #4aaee0;
+    --accent: #ff6b35;
+    --white: #ffffff;
+    --gray-soft: #f4f9fd;
+    --gray-text: #5a6a7a;
+    --dark: #1a2d3e;
+    --radius: 18px;
+    --shadow: 0 8px 32px rgba(58,155,213,0.13);
+    --shadow-hover: 0 16px 48px rgba(58,155,213,0.22);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f0f7fc;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ===== NAVBAR ===== */
+  nav {
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-bottom: 1.5px solid rgba(58,155,213,0.10);
+      padding: 0 5%;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 16px rgba(58,155,213,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+  .logo {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 1.6rem;
+    color: var(--blue-dark);
+    letter-spacing: -0.5px;
+  }
+  .logo span { color: var(--accent); }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--gray-text);
+    font-weight: 500;
+    font-size: 0.92rem;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blue-dark); }
+  .nav-btn {
+    background: var(--blue);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 3px; background: var(--blue-dark); border-radius: 3px; }
+
+  /* ===== HERO BANNER ===== */
+  .hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: var(--white);
+  }
+  .hero-bg-decor {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .hero-bg-decor.bottom-right {
+    bottom: -60px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle at 40% 40%, var(--blue-card) 60%, transparent 100%);
+    border-radius: 50%;
+    opacity: 0.28;
+  }
+  @media (max-width: 600px) {
+    .hero-bg-decor.bottom-right {
+      width: 120px;
+      height: 120px;
+      bottom: -30px;
+      right: -30px;
+    }
+  }
+
+  .slide {
+    display: none;
+    width: 100%;
+    min-height: 520px;
+    padding: 0 5%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    animation: fadeSlide 0.7s ease;
+    flex-wrap: nowrap;
+    transition: transform 0.3s;
+  }
+  .slide.active { display: flex; }
+
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .slide-text {
+    flex: 0 0 50%;
+    min-width: 0;
+    max-width: 50%;
+    padding: 60px 0;
+  }
+  .slide-tag {
+    display: inline-block;
+    background: var(--blue-pale);
+    color: var(--blue-dark);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 18px;
+  }
+  .slide-text h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--dark);
+    margin-bottom: 16px;
+  }
+  .slide-text h1 .highlight { color: var(--blue); }
+  .slide-text p {
+    color: var(--gray-text);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 28px;
+    max-width: 420px;
+  }
+  .slide-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--blue);
+    color: white;
+    border: none;
+    padding: 13px 30px;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(58,155,213,0.35); }
+  .btn-outline {
+    background: transparent;
+    color: var(--blue);
+    border: 2px solid var(--blue);
+    padding: 11px 28px;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-outline:hover { background: var(--blue); color: white; }
+
+  .slide-image {
+    flex: 0 0 50%;
+    max-width: 600px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 28px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--shadow-hover);
+  }
+  .slide-image img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+  }
+  .slide-image-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(26,45,62,0.55));
+    padding: 24px;
+  }
+  .slide-image-badge {
+    background: var(--blue);
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 50px;
+    display: inline-block;
+  }
+
+  /* Dots */
+  .hero-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px 0 30px;
+    background: white;
+  }
+  .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: #c9dff0;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .dot.active { background: var(--blue); width: 28px; border-radius: 5px; }
+
+  /* Stats bar */
+  .stats-bar {
+    background: var(--blue);
+    padding: 22px 5%;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+  .stat-item { text-align: center; }
+  .stat-item .num {
+    font-family: 'Nunito', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: white;
+  }
+  .stat-item .label {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.85);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== SECTION HEADING ===== */
+  .section { padding: 70px 5%; }
+  .section-label {
+    display: inline-block;
+    background: var(--blue-pale);
+    color: var(--blue-dark);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 12px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .section-heading {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    font-weight: 900;
+    color: var(--dark);
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .section-heading span { color: var(--blue); }
+  .section-sub {
+    color: var(--gray-text);
+    font-size: 0.95rem;
+    margin-bottom: 44px;
+    max-width: 500px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ===== CITY CARDS ===== */
+  .cities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .city-card {
+    border-radius: var(--radius);
+    overflow: hidden;
+    position: relative;
+    height: 260px;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .city-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+  .city-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .city-card:hover img { transform: scale(1.07); }
+  .city-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(58,155,213,0.12) 0%, rgba(26,45,62,0.7) 100%);
+  }
+  .city-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 22px 20px;
+  }
+  .city-name {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.45rem;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 4px;
+  }
+  .city-tag {
+    display: inline-block;
+    background: var(--blue);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 50px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== SERVICES GRID ===== */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .service-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 28px 20px 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 16px rgba(58,155,213,0.08);
+    transition: all 0.25s;
+    gap: 12px;
+  }
+  .service-card:hover {
+    border-color: var(--blue-light);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+  }
+  .service-icon {
+    width: 68px; height: 68px;
+    border-radius: 18px;
+    background: var(--blue-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    transition: background 0.25s;
+  }
+  .service-card:hover .service-icon { background: var(--blue); }
+  .service-card:hover .service-icon .icon-svg { filter: brightness(10); }
+  .service-name {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1.3;
+  }
+  .service-desc {
+    font-size: 0.75rem;
+    color: var(--gray-text);
+    line-height: 1.5;
+  }
+
+  /* SVG icons */
+  .icon-svg { width: 36px; height: 36px; }
+
+  /* ===== WHY US ===== */
+  .why-section {
+    background: var(--blue);
+    padding: 70px 5%;
+    border-radius: 32px;
+    margin: 0 3% 60px;
+  }
+  .why-section .section-heading { color: white; }
+  .why-section .section-label { background: rgba(255,255,255,0.2); color: white; }
+  .why-section .section-sub { color: rgba(255,255,255,0.8); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .why-card {
+    background: rgba(255,255,255,0.13);
+    border-radius: 16px;
+    padding: 28px 20px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: background 0.25s;
+  }
+  .why-card:hover { background: rgba(255,255,255,0.22); }
+  .why-icon { font-size: 2.2rem; margin-bottom: 14px; }
+  .why-title { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem; color: white; margin-bottom: 6px; }
+  .why-text { font-size: 0.78rem; color: rgba(255,255,255,0.8); line-height: 1.6; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 28px 5%;
+    font-size: 0.82rem;
+  }
+  footer .ft-logo { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.3rem; color: white; margin-bottom: 8px; }
+  footer .ft-logo span { color: var(--blue-light); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .nav-links, .nav-btn { display: none; }
+    .hamburger { display: flex; }
+
+    /* Keep slide side-by-side, just tighten spacing */
+    .slide { padding: 28px 4%; gap: 16px; min-height: 340px; }
+    .slide-text { padding: 0; }
+    .slide-image { height: 300px; max-width: 300px; aspect-ratio: 1 / 1; }
+
+    .cities-grid { gap: 12px; }
+    .city-card { height: 180px; }
+    .city-name { font-size: 1.1rem; }
+
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    .stats-bar { gap: 18px; padding: 18px 3%; }
+    .stat-item .num { font-size: 1.3rem; }
+    .stat-item .label { font-size: 0.65rem; }
+
+    /* Banner: always side by side, scaled for small screens */
+    .slide {
+      padding: 18px 3%;
+      gap: 10px;
+      min-height: 220px;
+      align-items: center;
+    }
+    .slide-tag { font-size: 0.6rem; padding: 4px 10px; margin-bottom: 8px; }
+    .slide-text h1 { font-size: 1rem; margin-bottom: 8px; line-height: 1.25; }
+    .slide-text p { font-size: 0.72rem; line-height: 1.5; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .slide-btns { gap: 8px; }
+    .btn-primary, .btn-outline { padding: 7px 14px; font-size: 0.7rem; }
+    .slide-image {
+      max-width: 180px;
+      width: 180px;
+      height: 180px;
+      aspect-ratio: 1 / 1;
+      border-radius: 14px;
+      margin: 0 auto;
+    }
+    .slide-image-badge { font-size: 0.6rem; padding: 4px 10px; }
+    .slide-image-overlay { padding: 12px; }
+
+    .cities-grid { gap: 8px; }
+    .city-card { height: 120px; border-radius: 12px; }
+    .city-name { font-size: 0.85rem; }
+    .city-tag { font-size: 0.58rem; padding: 2px 8px; }
+    .city-info { padding: 10px; }
+
+    /* Services: always 3x3 on mobile */
+    .services-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .service-card { padding: 14px 8px 12px; border-radius: 12px; gap: 7px; }
+    .service-icon { width: 46px; height: 46px; border-radius: 12px; }
+    .icon-svg { width: 24px; height: 24px; }
+    .service-name { font-size: 0.68rem; }
+    .service-desc { display: none; }
+
+    .why-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .why-section { margin: 0 0 40px; border-radius: 0; padding: 48px 4%; }
+    .why-card { padding: 20px 14px; }
+    .why-icon { font-size: 1.6rem; margin-bottom: 10px; }
+    .why-title { font-size: 0.85rem; }
+    .why-text { font-size: 0.7rem; }
+
+    .section { padding: 40px 3%; }
+    .section-heading { font-size: 1.4rem; }
+    .section-sub { font-size: 0.82rem; margin-bottom: 28px; }
+  }
+
+  @media (max-width: 400px) {
+    .slide { min-height: 190px; padding: 14px 3%; gap: 8px; }
+    .slide-text h1 { font-size: 0.88rem; }
+    .slide-image {
+      max-width: 130px;
+      width: 130px;
+      height: 130px;
+      aspect-ratio: 1 / 1;
+      border-radius: 12px;
+      margin: 0 auto;
+    }
+    .services-grid { gap: 6px; }
+    .service-card { padding: 10px 5px; }
+    .service-icon { width: 38px; height: 38px; }
+    .icon-svg { width: 20px; height: 20px; }
+    .service-name { font-size: 0.6rem; }
+  }
+
+  /* ===== WHY US ===== */
+  .whyus-section {
+    background: #fff;
+    padding: 70px 5% 60px;
+  }
+  .whyus-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .whyus-left {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .whyus-heading {
+    font-family: 'Nunito', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--dark);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .whyus-sub {
+    color: var(--gray-text);
+    font-size: 0.98rem;
+    margin-bottom: 32px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  .whyus-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .whyus-feature-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .whyus-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--blue);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .whyus-connector {
+    width: 2px;
+    flex: 1;
+    min-height: 28px;
+    border-left: 2.5px dashed #c9dff0;
+    margin: 4px 0;
+  }
+  .whyus-feature-text {
+    padding-bottom: 28px;
+  }
+  .whyus-feature:last-child .whyus-connector {
+    display: none;
+  }
+  .whyus-feature:last-child .whyus-feature-text {
+    padding-bottom: 0;
+  }
+  .whyus-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 4px;
+    margin-top: 12px;
+  }
+  .whyus-desc {
+    color: var(--gray-text);
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  .whyus-right {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .whyus-imgbox {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    border-radius: 22px;
+    overflow: visible;
+    background: transparent;
+    margin-bottom: 24px;
+  }
+  .whyus-img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    display: block;
+    border-radius: 22px;
+    box-shadow: 0 8px 32px rgba(58,155,213,0.13);
+  }
+  .whyus-stats {
+    position: absolute;
+    bottom: -24px;
+    right: 0;
+    background: var(--blue);
+    color: #fff;
+    border-radius: 16px;
+    display: flex;
+    gap: 0;
+    box-shadow: 0 4px 24px rgba(58,155,213,0.22);
+    font-family: 'Nunito', sans-serif;
+    overflow: hidden;
+    min-width: 260px;
+  }
+  .whyus-stat {
+    text-align: center;
+    flex: 1;
+    padding: 22px 24px 18px;
+  }
+  .whyus-stat span {
+    font-size: 2rem;
+    font-weight: 900;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .whyus-stat-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.92);
+    letter-spacing: 0.3px;
+  }
+  @media (max-width: 900px) {
+    .whyus-section { padding: 48px 5% 60px; }
+    .whyus-container { flex-direction: column; gap: 40px; }
+    .whyus-imgbox { max-width: 420px; margin: 0 auto 24px; }
+  }
+  @media (max-width: 600px) {
+    .whyus-section { padding: 36px 5% 56px; }
+    .whyus-heading { font-size: 1.35rem; }
+    .whyus-sub { font-size: 0.88rem; margin-bottom: 24px; }
+    .whyus-icon { width: 40px; height: 40px; font-size: 1.1rem; }
+    .whyus-title { font-size: 0.95rem; margin-top: 8px; }
+    .whyus-desc { font-size: 0.82rem; }
+    .whyus-feature-text { padding-bottom: 20px; }
+    .whyus-imgbox { max-width: 100%; }
+    .whyus-img { height: 220px; }
+    .whyus-stats {
+      min-width: 0;
+      width: 90%;
+      right: 50%;
+      transform: translateX(50%);
+      bottom: -20px;
+    }
+    .whyus-stat { padding: 14px 12px 12px; }
+    .whyus-stat span { font-size: 1.35rem; }
+    .whyus-stat-label { font-size: 0.68rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">Air <span>Cool Tech</span> Services</div>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Cities</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <button class="nav-btn">Book Now</button>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO BANNER -->
+<section class="hero">
+  <div class="hero-bg-decor bottom-right"></div>
+  <div class="slide active" id="slide-1">
+    <div class="slide-text">
+      <span class="slide-tag">⚡ Trusted AC Experts</span>
+      <h1>Expert <span class="highlight">AC Repair</span> &amp; Installation</h1>
+      <p>Split, window, cassette, and VRF/VRV AC systems — our certified technicians restore your cooling in a single visit, guaranteed.</p>
+      <div class="slide-btns">
+        <a href="#" class="btn-primary">Book a Service</a>
+      </div>
+    </div>
+    <div class="slide-image">
+      <img src="static/images/ac_installation.png" alt="AC Installation" />
+      <div class="slide-image-overlay">
+        <span class="slide-image-badge">Same-Day Service</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2: Washing Machine & Fridge -->
+  <div class="slide" id="slide-2">
+    <div class="slide-text">
+      <span class="slide-tag">🔧 Appliance Specialists</span>
+      <h1>Fridge &amp; <span class="highlight">Washing Machine</span> Repair</h1>
+      <p>From compressor failures to drum issues — our experts fix all brands of refrigerators and washing machines with genuine spare parts.</p>
+      <div class="slide-btns">
+        <a href="#" class="btn-primary">Book a Service</a>
+      </div>
+    </div>
+    <div class="slide-image">
+      <img src="static/images/washing_machine.png" alt="Washing Machine Repair" />
+      <div class="slide-image-overlay">
+        <span class="slide-image-badge">All Brands Covered</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3: Geyser & Water Heater -->
+  <div class="slide" id="slide-3">
+    <div class="slide-text">
+      <span class="slide-tag">🌡️ Water Heating Experts</span>
+      <h1>Geyser &amp; <span class="highlight">Water Heater</span> Repair</h1>
+      <p>Facing hot water problems? Get quick, reliable geyser and water heater repair and installation at your doorstep.</p>
+      <div class="slide-btns">
+        <a href="#" class="btn-primary">Book a Service</a>
+      </div>
+    </div>
+    <div class="slide-image">
+      <img src="static/images/geyser.png" alt="Geyser Repair" />
+      <div class="slide-image-overlay">
+        <span class="slide-image-badge">30-Day Service Warranty</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dots -->
+  <div class="hero-dots">
+    <div class="dot active" onclick="goToSlide(0)"></div>
+    <div class="dot" onclick="goToSlide(1)"></div>
+    <div class="dot" onclick="goToSlide(2)"></div>
+  </div>
+</section>
+
+<!-- CITY CARDS -->
+<section class="section">
+  <div class="section-label">📍 We Operate In</div>
+  <h2 class="section-heading">Find Us In Your <span>City</span></h2>
+  <p class="section-sub">Fast and reliable repair services now available across three major Indian cities.</p>
+  <div class="cities-grid">
+    <div class="city-card">
+      <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&auto=format&fit=crop" alt="Bangalore" />
+      <div class="city-overlay"></div>
+      <div class="city-info">
+        <div class="city-name">Bangalore</div>
+        <span class="city-tag">Available Now</span>
+      </div>
+    </div>
+    <div class="city-card">
+      <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?w=600&auto=format&fit=crop" alt="Jaipur" />
+      <div class="city-overlay"></div>
+      <div class="city-info">
+        <div class="city-name">Jaipur</div>
+        <span class="city-tag">Available Now</span>
+      </div>
+    </div>
+    <div class="city-card">
+      <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&auto=format&fit=crop&sat=-100" alt="Delhi" />
+      <div class="city-overlay"></div>
+      <div class="city-info">
+        <div class="city-name">Delhi</div>
+        <span class="city-tag">Available Now</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES GRID -->
+<section class="section" style="padding-top: 0;">
+  <div class="section-label">🛠️ Our Services</div>
+  <h2 class="section-heading">What We <span>Fix</span></h2>
+  <p class="section-sub">Comprehensive repair and maintenance for all your home appliances.</p>
+  <div class="services-grid">
+
+    <!-- AC Repair -->
+    <div class="service-card">
+      <div class="service-icon">
+        <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="18" width="48" height="22" rx="6" fill="#3a9bd5" opacity="0.15"/>
+          <rect x="8" y="18" width="48" height="22" rx="6" stroke="#3a9bd5" stroke-width="2.5"/>
+          <rect x="8" y="40" width="48" height="6" rx="3" fill="#3a9bd5" opacity="0.3"/>
+          <circle cx="50" cy="29" r="4" fill="#3a9bd5"/>
+          <line x1="14" y1="29" x2="40" y2="29" stroke="#3a9bd5" stroke-width="2" stroke-dasharray="4 3"/>
+          <line x1="32" y1="46" x2="32" y2="54" stroke="#3a9bd5" stroke-width="2"/>
+          <line x1="24" y1="46" x2="22" y2="54" stroke="#3a9bd5" stroke-width="2"/>
+          <line x1="40" y1="46" x2="42" y2="54" stroke="#3a9bd5" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="service-name">AC Repair</div>
+      <div class="service-desc">Split, Window & Inverter AC service</div>
+    </div>
+    <!-- Cassette AC -->
+    <div class="service-card">
+      <div class="service-icon">
+        <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="10" width="44" height="44" rx="8" fill="#3a9bd5" opacity="0.1" stroke="#3a9bd5" stroke-width="2.5"/>
+          <circle cx="32" cy="32" r="10" stroke="#3a9bd5" stroke-width="2" opacity="0.6"/>
+          <circle cx="32" cy="32" r="4" fill="#3a9bd5"/>
+          <line x1="32" y1="10" x2="32" y2="18" stroke="#3a9bd5" stroke-width="2" stroke-linecap="round"/>
+          <line x1="32" y1="46" x2="32" y2="54" stroke="#3a9bd5" stroke-width="2" stroke-linecap="round"/>
+          <line x1="10" y1="32" x2="18" y2="32" stroke="#3a9bd5" stroke-width="2" stroke-linecap="round"/>
+          <line x1="46" y1="32" x2="54" y2="32" stroke="#3a9bd5" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="service-name">Cassette AC</div>
+      <div class="service-desc">Ceiling cassette AC service</div>
+    </div>
+    <!-- VRF/VRV AC -->
+    <div class="service-card">
+      <div class="service-icon">
+        <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="20" width="52" height="26" rx="6" fill="#3a9bd5" opacity="0.1" stroke="#3a9bd5" stroke-width="2.5"/>
+          <rect x="6" y="14" width="52" height="8" rx="4" fill="#3a9bd5" opacity="0.2" stroke="#3a9bd5" stroke-width="1.5"/>
+          <line x1="18" y1="33" x2="18" y2="42" stroke="#3a9bd5" stroke-width="2" stroke-linecap="round"/>
+          <line x1="32" y1="33" x2="32" y2="42" stroke="#3a9bd5" stroke-width="2" stroke-linecap="round"/>
+          <line x1="46" y1="33" x2="46" y2="42" stroke="#3a9bd5" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="42" x2="52" y2="42" stroke="#3a9bd5" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <circle cx="54" cy="18" r="3" fill="#3a9bd5"/>
+        </svg>
+      </div>
+      <div class="service-name">VRF / VRV AC</div>
+      <div class="service-desc">Commercial VRF system repair</div>
+    </div>
+    <!-- Fridge -->
+    <div class="service-card">
+      <div class="service-icon">
+        <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="14" y="8" width="36" height="48" rx="6" fill="#3a9bd5" opacity="0.1" stroke="#3a9bd5" stroke-width="2.5"/>
+          <line x1="14" y1="28" x2="50" y2="28" stroke="#3a9bd5" stroke-width="2"/>
+          <line x1="44" y1="16" x2="44" y2="24" stroke="#3a9bd5" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="44" y1="34" x2="44" y2="48" stroke="#3a9bd5" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="32" cy="18" r="2" fill="#3a9bd5"/>
+        </svg>
+      </div>
+      <div class="service-name">Fridge Repair</div>
+      <div class="service-desc">All refrigerator brands & models</div>
+    </div>
+    <!-- Washing Machine -->
+    <div class="service-card">
+      <div class="service-icon">
+        <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="8" width="44" height="50" rx="7" fill="#3a9bd5" opacity="0.1" stroke="#3a9bd5" stroke-width="2.5"/>
+          <circle cx="32" cy="36" r="12" stroke="#3a9bd5" stroke-width="2.5"/>
+          <circle cx="32" cy="36" r="5" fill="#3a9bd5" opacity="0.25"/>
+          <circle cx="20" cy="16" r="3" fill="#3a9bd5" opacity="0.4"/>
+          <circle cx="28" cy="16" r="3" fill="#3a9bd5" opacity="0.25"/>
+          <circle cx="44" cy="16" r="2" fill="#3a9bd5"/>
+        </svg>
+      </div>
+      <div class="service-name">Washing Machine</div>
+      <div class="service-desc">Front & top load repair</div>
+    </div>
+    <!-- Geyser -->
+    <div class="service-card">
+      <div class="service-icon">
+        <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="18" y="8" width="28" height="36" rx="8" fill="#3a9bd5" opacity="0.1" stroke="#3a9bd5" stroke-width="2.5"/>
+          <line x1="32" y1="44" x2="32" y2="54" stroke="#3a9bd5" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="26" y1="54" x2="38" y2="54" stroke="#3a9bd5" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M27 24 Q32 18 37 24 Q32 30 27 24Z" fill="#3a9bd5" opacity="0.5"/>
+          <circle cx="32" cy="15" r="3" fill="#3a9bd5" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="service-name">Geyser Repair</div>
+      <div class="service-desc">Electric & gas water heaters</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="num">8M+</div>
+    <div class="label">Completed Projects</div>
+  </div>
+  <div class="stat-item">
+    <div class="num">4M+</div>
+    <div class="label">Happy Customers</div>
+  </div>
+  <div class="stat-item">
+    <div class="num">500+</div>
+    <div class="label">Expert Technicians</div>
+  </div>
+  <div class="stat-item">
+    <div class="num">3</div>
+    <div class="label">Major Cities</div>
+  </div>
+</div>
+
+<!-- WHY US -->
+
+<section class="whyus-section">
+  <div class="whyus-container">
+    <div class="whyus-left">
+      <h2 class="whyus-heading">Why choose <span>Air Cool Tech Services</span>?</h2>
+      <p class="whyus-sub">With Air Cool Tech Services you will find the best professionals in the area, whatever your need.</p>
+      <div class="whyus-feature">
+        <div class="whyus-feature-left">
+          <div class="whyus-icon">🔒</div>
+          <div class="whyus-connector"></div>
+        </div>
+        <div class="whyus-feature-text">
+          <div class="whyus-title">Verified &amp; vetted professionals</div>
+          <div class="whyus-desc">Get service from trusted and verified partner with professional skills and experience.</div>
+        </div>
+      </div>
+      <div class="whyus-feature">
+        <div class="whyus-feature-left">
+          <div class="whyus-icon">🎯</div>
+          <div class="whyus-connector"></div>
+        </div>
+        <div class="whyus-feature-text">
+          <div class="whyus-title">Matched to your needs.</div>
+          <div class="whyus-desc">Avail tailored, service-specific options according to your precise needs and preferences.</div>
+        </div>
+      </div>
+      <div class="whyus-feature">
+        <div class="whyus-feature-left">
+          <div class="whyus-icon">💬</div>
+          <div class="whyus-connector"></div>
+        </div>
+        <div class="whyus-feature-text">
+          <div class="whyus-title">Customer support at every step.</div>
+          <div class="whyus-desc">Ensuring smooth connections and support at every step for our users.</div>
+        </div>
+      </div>
+    </div>
+    <div class="whyus-right">
+      <div class="whyus-imgbox">
+        <img src="static/images/why_us.png" alt="Why Us" class="whyus-img" />
+        <div class="whyus-stats">
+          <div class="whyus-stat"><span>8M+</span><div class="whyus-stat-label">Completed Projects</div></div>
+          <div class="whyus-stat"><span>4M+</span><div class="whyus-stat-label">Happy Customers</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-logo">Cool<span>Fix</span></div>
+  <p>© 2025 CoolFix Services · Bangalore · Jaipur · Delhi</p>
+</footer>
+
+<script>
+  // Auto-slide every 3 seconds
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+  let current = 0;
+  let timer;
+
+  function goToSlide(idx) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = idx;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    clearInterval(timer);
+    timer = setInterval(nextSlide, 3000);
+  }
+
+  function nextSlide() {
+    goToSlide((current + 1) % slides.length);
+  }
+
+  timer = setInterval(nextSlide, 3000);
+
+  // Hamburger (toggle nav for mobile - simplified)
+  document.getElementById('hamburger').addEventListener('click', () => {
+    const nav = document.querySelector('.nav-links');
+    if (nav.style.display === 'flex') {
+      nav.style.display = 'none';
+    } else {
+      nav.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:white;padding:20px 5%;gap:16px;box-shadow:0 8px 24px rgba(0,0,0,0.1);z-index:99;';
+    }
+  });
+</script>
+</body>
+</html>

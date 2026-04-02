@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us — Air Cool Tech Services{% endblock %}
+
+{% block content %}
+
+<div class="page-hero">
+  <h1>Contact Us</h1>
+  <p>Book a service or get a free quote — we'll get back to you within the hour.</p>
+</div>
+
+<section class="section">
+  <div class="contact-grid">
+
+    <div class="contact-info">
+      <h3>Get in Touch</h3>
+      <p>Our team is available 7 days a week, 8 AM – 8 PM. Book online or call us directly for same-day service.</p>
+      <div class="contact-detail">
+        <span>📞</span> +91 98765 43210
+      </div>
+      <div class="contact-detail">
+        <span>✉️</span> support@aircooltech.in
+      </div>
+      <div class="contact-detail">
+        <span>📍</span> Bangalore · Jaipur · Delhi
+      </div>
+      <div class="contact-detail">
+        <span>🕐</span> Mon – Sun, 8 AM – 8 PM
+      </div>
+    </div>
+
+    <form class="contact-form" method="POST" action="{{ url_for('contact') }}">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Your full name" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX" required />
+      </div>
+      <div class="form-group">
+        <label for="service">Service Required</label>
+        <select id="service" name="service" required>
+          <option value="" disabled selected>Select a service</option>
+          <option value="ac_repair">AC Repair</option>
+          <option value="ac_install">AC Installation</option>
+          <option value="cassette_ac">Cassette AC</option>
+          <option value="vrf_ac">VRF / VRV AC</option>
+          <option value="fridge">Fridge Repair</option>
+          <option value="washing_machine">Washing Machine</option>
+          <option value="geyser">Geyser Repair</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <select id="city" name="city" required>
+          <option value="" disabled selected>Select your city</option>
+          <option value="bangalore">Bangalore</option>
+          <option value="jaipur">Jaipur</option>
+          <option value="delhi">Delhi</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Message (Optional)</label>
+        <textarea id="message" name="message" placeholder="Describe the issue briefly..."></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">Book Service</button>
+    </form>
+
+  </div>
+</section>
+
+{% endblock %}

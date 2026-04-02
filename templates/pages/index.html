@@ -1,0 +1,444 @@
+{% extends 'base.html' %}
+
+{% block title %}Air Cool Tech Services — Home{% endblock %}
+
+{% block content %}
+
+<!-- HERO BANNER -->
+<section class="hero">
+  <div class="hero-bg-decor bottom-right"></div>
+
+  <!-- Slide 1: AC -->
+  <div class="slide active" id="slide-1">
+    <div class="slide-text">
+      <span class="slide-tag">⚡ Trusted AC Experts</span>
+      <h1>Expert <span class="highlight">AC Repair</span> &amp; Fast Installation Service</h1>
+      <p>Split, window, cassette, and VRF/VRV AC systems - our certified technicians restore your cooling in a single
+        visit, guaranteed.</p>
+      <div class="slide-btns">
+        <a href="{{ url_for('contact') }}" class="btn-primary">Book a Service</a>
+        <a href="tel:+91XXXXXXXXXX" class="btn-outline btn-hero-call">Call Now</a>
+      </div>
+    </div>
+    <div class="slide-image">
+      <img src="{{ url_for('static', filename='images/ac_installation.png') }}" alt="AC Installation" />
+      <div class="slide-image-overlay">
+        <span class="slide-image-badge">Same-Day Service</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2: Washing Machine -->
+  <div class="slide" id="slide-2">
+    <div class="slide-text">
+      <span class="slide-tag">🔧 Appliance Specialists</span>
+      <h1>Fridge &amp; <span class="highlight">Washing Machine</span> Expert Repair</h1>
+      <p>From compressor failures to drum issues - our experts fix all brands of refrigerators and washing machines with
+        genuine spare parts.</p>
+      <div class="slide-btns">
+        <a href="{{ url_for('contact') }}" class="btn-primary">Book a Service</a>
+        <a href="tel:+91XXXXXXXXXX" class="btn-outline btn-hero-call">Call Now</a>
+      </div>
+    </div>
+    <div class="slide-image">
+      <img src="{{ url_for('static', filename='images/washing_machine.png') }}" alt="Washing Machine Repair" />
+      <div class="slide-image-overlay">
+        <span class="slide-image-badge">All Brands Covered</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3: Geyser -->
+  <div class="slide" id="slide-3">
+    <div class="slide-text">
+      <span class="slide-tag">🌡️ Water Heating Experts</span>
+      <h1>Geyser &amp; <span class="highlight">Water Heater</span> Repair Service</h1>
+      <p>Facing hot water problems? Get quick, reliable geyser and water heater repair and installation at your
+        doorstep.</p>
+      <div class="slide-btns">
+        <a href="{{ url_for('contact') }}" class="btn-primary">Book a Service</a>
+        <a href="tel:+91XXXXXXXXXX" class="btn-outline btn-hero-call">Call Now</a>
+      </div>
+    </div>
+    <div class="slide-image">
+      <img src="{{ url_for('static', filename='images/geyser.png') }}" alt="Geyser Repair" />
+      <div class="slide-image-overlay">
+        <span class="slide-image-badge">30-Day Service Warranty</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-dots">
+    <div class="dot active" onclick="goToSlide(0)"></div>
+    <div class="dot" onclick="goToSlide(1)"></div>
+    <div class="dot" onclick="goToSlide(2)"></div>
+  </div>
+</section>
+
+<!-- CITY CARDS -->
+<section class="section">
+  <div class="section-label">📍 We Operate In</div>
+  <h2 class="section-heading">Find Us In Your <span>City</span></h2>
+  <p class="section-sub">Fast and reliable repair services now available across three major Indian cities.</p>
+  <div class="cities-grid">
+    <div class="city-card">
+      <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&auto=format&fit=crop"
+        alt="Bangalore" />
+      <div class="city-overlay"></div>
+      <div class="city-info">
+        <div class="city-name">Bangalore</div>
+        <span class="city-tag">Available Now</span>
+      </div>
+    </div>
+    <div class="city-card">
+      <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?w=600&auto=format&fit=crop" alt="Jaipur" />
+      <div class="city-overlay"></div>
+      <div class="city-info">
+        <div class="city-name">Jaipur</div>
+        <span class="city-tag">Available Now</span>
+      </div>
+    </div>
+    <div class="city-card">
+      <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&auto=format&fit=crop&sat=-100"
+        alt="Delhi" />
+      <div class="city-overlay"></div>
+      <div class="city-info">
+        <div class="city-name">Delhi</div>
+        <span class="city-tag">Available Now</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES GRID -->
+<section class="section" style="padding-top: 0;">
+  <div class="section-label">🛠️ Our Services</div>
+  <h2 class="section-heading">What We <span>Fix</span></h2>
+  <p class="section-sub">Comprehensive repair and maintenance for all your home appliances.</p>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-img-wrap">
+        <img src="{{ url_for('static', filename='images/ac_repair.jpg') }}" alt="AC Repair" />
+      </div>
+      <div class="service-info">
+        <span class="service-tag">Cooling</span>
+        <div class="service-name">AC Repair</div>
+        <div class="service-desc">Split, Window &amp; Inverter AC service</div>
+        <div class="service-actions">
+          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-img-wrap">
+        <img src="{{ url_for('static', filename='images/cassate_ac.png') }}" alt="Cassette AC" />
+      </div>
+      <div class="service-info">
+        <span class="service-tag">Cooling</span>
+        <div class="service-name">Cassette AC</div>
+        <div class="service-desc">Ceiling cassette AC installation &amp; service</div>
+        <div class="service-actions">
+          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-img-wrap">
+        <img src="{{ url_for('static', filename='images/VRB_AC.png') }}" alt="VRF VRV AC" />
+      </div>
+      <div class="service-info">
+        <span class="service-tag">Commercial</span>
+        <div class="service-name">VRF / VRV AC</div>
+        <div class="service-desc">Commercial VRF/VRV system repair</div>
+        <div class="service-actions">
+          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-img-wrap">
+        <img src="{{ url_for('static', filename='images/fridge_repair.jpg') }}" alt="Fridge Repair" />
+      </div>
+      <div class="service-info">
+        <span class="service-tag">Kitchen</span>
+        <div class="service-name">Fridge Repair</div>
+        <div class="service-desc">All refrigerator brands &amp; models</div>
+        <div class="service-actions">
+          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-img-wrap">
+        <img src="{{ url_for('static', filename='images/washing_machine.png') }}" alt="Washing Machine" />
+      </div>
+      <div class="service-info">
+        <span class="service-tag">Laundry</span>
+        <div class="service-name">Washing Machine</div>
+        <div class="service-desc">Front &amp; top load repair, all brands</div>
+        <div class="service-actions">
+          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-img-wrap">
+        <img src="{{ url_for('static', filename='images/geyser.png') }}" alt="Geyser Repair" />
+      </div>
+      <div class="service-info">
+        <span class="service-tag">Water Heating</span>
+        <div class="service-name">Geyser Repair</div>
+        <div class="service-desc">Electric &amp; gas water heater service</div>
+        <div class="service-actions">
+          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BRANDS SECTION -->
+<section class="brands-section">
+  <div class="section-label">✅ Brands We Service</div>
+  <h2 class="section-heading">We Repair <span>All Major Brands</span></h2>
+  <p class="section-sub">Certified technicians trained on every leading AC &amp; appliance brand in India.</p>
+
+  <div class="brands-grid">
+
+    <!-- Daikin -->
+    <div class="brand-card">
+      <div class="brand-logo-wrap">
+        <img src="{{ url_for('static', filename='images/brands/daikin.png') }}" alt="Daikin" />
+      </div>
+    </div>
+
+    <!-- LG -->
+    <div class="brand-card">
+      <div class="brand-logo-wrap">
+        <img src="{{ url_for('static', filename='images/brands/LG.png') }}" alt="LG" />
+      </div>
+    </div>
+
+    <!-- Samsung -->
+    <div class="brand-card">
+      <div class="brand-logo-wrap">
+        <img src="{{ url_for('static', filename='images/brands/samsung.webp') }}" alt="Samsung" />
+      </div>
+    </div>
+
+    <!-- Voltas -->
+    <div class="brand-card">
+      <div class="brand-logo-wrap">
+        <img src="{{ url_for('static', filename='images/brands/voltas.png') }}" alt="Voltas" />
+      </div>
+    </div>
+
+    <!-- Hitachi -->
+    <div class="brand-card">
+      <div class="brand-logo-wrap">
+        <img src="{{ url_for('static', filename='images/brands/hitachi.png') }}" alt="Hitachi" />
+      </div>
+    </div>
+
+    <!-- Carrier -->
+    <div class="brand-card">
+      <div class="brand-logo-wrap">
+        <img src="{{ url_for('static', filename='images/brands/carrier.png') }}" alt="Carrier" />
+      </div>
+    </div>
+
+    <!-- Panasonic -->
+    <div class="brand-card">
+      <div class="brand-logo-wrap">
+        <img src="{{ url_for('static', filename='images/brands/panasonic.png') }}" alt="Panasonic" />
+      </div>
+    </div>
+
+    <!-- Haier -->
+    <div class="brand-card">
+      <div class="brand-logo-wrap">
+        <img src="{{ url_for('static', filename='images/brands/haier.png') }}" alt="Haier" />
+      </div>
+    </div>
+
+    <!-- Blue Star -->
+    <div class="brand-card">
+      <div class="brand-logo-wrap">
+        <img src="{{ url_for('static', filename='images/brands/bluestar.png') }}" alt="Blue Star" />
+      </div>
+    </div>
+
+    <!-- Whirlpool -->
+    <div class="brand-card">
+      <div class="brand-logo-wrap">
+        <img src="{{ url_for('static', filename='images/brands/whirlpool.png') }}" alt="Whirlpool" />
+      </div>
+    </div>
+
+    <!-- Godrej -->
+    <div class="brand-card">
+      <div class="brand-logo-wrap">
+        <img src="{{ url_for('static', filename='images/brands/godrej.png') }}" alt="Godrej" />
+      </div>
+    </div>
+
+    <!-- O General -->
+    <div class="brand-card">
+      <div class="brand-logo-wrap">
+        <img src="{{ url_for('static', filename='images/brands/o general.jpg') }}" alt="O General" />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SYMPTOM CHECKER -->
+<section class="section symp-section">
+  <div class="section-label">🧐 Symptom Checker</div>
+  <h2 class="section-heading">What's Wrong With Your <span>AC?</span></h2>
+  <p class="section-sub">Identify your issue in seconds. We know exactly how to fix it.</p>
+
+  <div class="symp-grid">
+    <a href="{{ url_for('contact') }}?issue=warm_air" class="symp-card">
+      <div class="symp-icon">🌡️</div>
+      <div class="symp-content">
+        <h3>Blowing Warm Air?</h3>
+        <p>This usually indicates gas leakage or a compressor issue. We'll fix it fast.</p>
+      </div>
+      <span class="symp-btn">Book Now</span>
+    </a>
+
+    <a href="{{ url_for('contact') }}?issue=noise" class="symp-card">
+      <div class="symp-icon">🔊</div>
+      <div class="symp-content">
+        <h3>Making Loud Noise?</h3>
+        <p>Grinding or rattling? It's likely the fan motor or a loose component.</p>
+      </div>
+      <span class="symp-btn">Book Now</span>
+    </a>
+
+    <a href="{{ url_for('contact') }}?issue=leaking" class="symp-card">
+      <div class="symp-icon">💧</div>
+      <div class="symp-content">
+        <h3>Water Leaking?</h3>
+        <p>Clogged drainage or ice formation. Our deep cleaning settles this.</p>
+      </div>
+      <span class="symp-btn">Book Now</span>
+    </a>
+
+    <a href="{{ url_for('contact') }}?issue=smell" class="symp-card">
+      <div class="symp-icon">👃</div>
+      <div class="symp-content">
+        <h3>Bad Smell?</h3>
+        <p>Mould or bacterial growth in vents. Needs professional sanitization.</p>
+      </div>
+      <span class="symp-btn">Book Now</span>
+    </a>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section hiw-section">
+  <div class="section-label">⚡ Fast &amp; Easy</div>
+  <h2 class="section-heading">How It <span>Works</span></h2>
+  <p class="section-sub">Expert cooling is just 3 simple steps away.</p>
+
+  <div class="hiw-grid">
+    <div class="hiw-item">
+      <div class="hiw-num">1</div>
+      <div class="hiw-icon-wrap">📱</div>
+      <h3>Book in 60s</h3>
+      <p>WhatsApp us or fill the form. Instant response guaranteed.</p>
+    </div>
+    <div class="hiw-line"></div>
+    <div class="hiw-item">
+      <div class="hiw-num">2</div>
+      <div class="hiw-icon-wrap">👨‍🔧</div>
+      <h3>Instant Confirmation</h3>
+      <p>Get technician details and live ETA on your phone.</p>
+    </div>
+    <div class="hiw-line"></div>
+    <div class="hiw-item">
+      <div class="hiw-num">3</div>
+      <div class="hiw-icon-wrap">❄️</div>
+      <h3>Cooling Restored</h3>
+      <p>Pay only after the job is done and you're satisfied.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="whyus-section">
+  <div class="whyus-container">
+    <div class="whyus-left">
+      <div class="section-label whyus-tag">🛡️ Why Choose Us</div>
+      <h2 class="section-heading">Why Choose <span>Air Cool Tech Services</span>?</h2>
+      <p class="section-sub">With Air Cool Tech Services, you get the best professionals in your area, tailored to your specific needs.</p>
+
+      <div class="whyus-feature">
+        <div class="whyus-feature-left">
+          <div class="whyus-icon">🔒</div>
+          <div class="whyus-connector"></div>
+        </div>
+        <div class="whyus-feature-text">
+          <div class="whyus-title">Verified &amp; vetted professionals</div>
+          <div class="whyus-desc">Get service from trusted and verified partners with professional skills and
+            experience.</div>
+        </div>
+      </div>
+
+      <div class="whyus-feature">
+        <div class="whyus-feature-left">
+          <div class="whyus-icon">🎯</div>
+          <div class="whyus-connector"></div>
+        </div>
+        <div class="whyus-feature-text">
+          <div class="whyus-title">Matched to your needs</div>
+          <div class="whyus-desc">Avail tailored, service-specific options according to your precise needs and
+            preferences.</div>
+        </div>
+      </div>
+
+      <div class="whyus-feature">
+        <div class="whyus-feature-left">
+          <div class="whyus-icon">💬</div>
+          <div class="whyus-connector"></div>
+        </div>
+        <div class="whyus-feature-text">
+          <div class="whyus-title">Customer support at every step</div>
+          <div class="whyus-desc">Ensuring smooth connections and support at every step for our users.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="whyus-right">
+      <div class="whyus-imgbox">
+        <img src="{{ url_for('static', filename='images/why_us.png') }}" alt="Why Us" class="whyus-img" />
+        <div class="whyus-stats">
+          <div class="whyus-stat">
+            <span>8M+</span>
+            <div class="whyus-stat-label">Completed Projects</div>
+          </div>
+          <div class="whyus-stat">
+            <span>4M+</span>
+            <div class="whyus-stat-label">Happy Customers</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

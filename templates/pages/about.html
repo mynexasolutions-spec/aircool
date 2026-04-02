@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}About Us — Air Cool Tech Services{% endblock %}
+
+{% block content %}
+
+<div class="page-hero">
+  <h1>About Us</h1>
+  <p>A decade of trusted appliance repair across India — certified, reliable, and always on time.</p>
+</div>
+
+<section class="section">
+  <div class="about-grid">
+    <img src="{{ url_for('static', filename='images/why_us.png') }}" alt="About Air Cool Tech" class="about-img" />
+    <div class="about-text">
+      <h2>Who We <span>Are</span></h2>
+      <p>Air Cool Tech Services is one of India's most trusted home appliance repair networks, with a decade of experience serving millions of households across Bangalore, Jaipur, and Delhi.</p>
+      <p>Our certified technicians specialise in AC systems (split, window, cassette, VRF/VRV), refrigerators, washing machines, and geysers — covering all major brands with genuine spare parts at transparent prices.</p>
+      <p>From a single-visit repair to annual maintenance contracts, we're committed to restoring your comfort—fast.</p>
+      <div class="about-pills">
+        <span class="about-pill">ISO Certified</span>
+        <span class="about-pill">500+ Technicians</span>
+        <span class="about-pill">All Major Brands</span>
+        <span class="about-pill">30-Day Warranty</span>
+        <span class="about-pill">Same-Day Service</span>
+        <span class="about-pill">Transparent Pricing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
