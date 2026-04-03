@@ -136,9 +136,9 @@
   .highlight-section { padding: 40px 5% 0; background: var(--white); }
   .highlight-grid { 
     display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(4, 1fr); 
     gap: 15px; 
-    max-width: 1100px; 
+    max-width: 1200px; 
     margin: 0 auto; 
   }
   .highlight-card { 
@@ -159,7 +159,7 @@
   .h-btn-outline { border-color: var(--blue); color: var(--blue); }
 
   @media (max-width: 480px) {
-    .highlight-grid { gap: 8px; }
+    .highlight-grid { gap: 8px; grid-template-columns: repeat(2, 1fr); }
     .highlight-card { padding: 8px 5px; border-radius: 12px; }
     .highlight-card h4 { font-size: 0.55rem; height: 28px; margin-bottom: 8px; }
     .highlight-actions { gap: 4px; }
@@ -221,7 +221,7 @@
     <div class="banner-locations">
       <div class="loc-tag">Bangalore</div>
       <div class="loc-tag">Jaipur</div>
-      <div class="loc-tag">Delhi</div>
+      <div class="loc-tag">Rudrapur</div>
     </div>
   </div>
 </section>
@@ -249,7 +249,15 @@
     </div>
     <div class="highlight-card">
       <img src="{{ url_for('static', filename='images/VRB_AC.png') }}" alt="PCB Repair" />
-      <h4>PCB & Compressor Repair</h4>
+      <h4>PCB &amp; Compressor Repair</h4>
+      <div class="highlight-actions">
+        <a href="{{ url_for('contact') }}" class="h-btn h-btn-primary">Book Now</a>
+        <a href="tel:+91XXXXXXXXXX" class="h-btn h-btn-outline">Call Now</a>
+      </div>
+    </div>
+    <div class="highlight-card">
+      <img src="{{ url_for('static', filename='images/why_us.png') }}" alt="Preventive Care" />
+      <h4>Preventive Care &amp; AMC</h4>
       <div class="highlight-actions">
         <a href="{{ url_for('contact') }}" class="h-btn h-btn-primary">Book Now</a>
         <a href="tel:+91XXXXXXXXXX" class="h-btn h-btn-outline">Call Now</a>
@@ -339,6 +347,37 @@
 
       <div class="repair-actions">
         <a href="{{ url_for('contact') }}" class="btn-primary" style="padding: 14px 32px; border-radius: 50px;">Fix My Cassette AC</a>
+        <a href="tel:+91XXXXXXXXXX" class="btn-outline" style="padding: 14px 32px; border-radius: 50px; border-color: var(--blue); color: var(--blue);">📞 Call Us Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MAINTENANCE SECTION
+============================================================ -->
+<section class="repair-section bg-alt" id="maintenance">
+  <div class="repair-grid">
+    <div class="repair-image-box">
+      <img src="{{ url_for('static', filename='images/why_us.png') }}" alt="Cassette AMC" />
+      <div style="position: absolute; top: 20px; right: 20px; z-index: 10;">
+        <span class="slide-image-badge" style="background:var(--blue);">Priority Care</span>
+      </div>
+    </div>
+    <div class="repair-content">
+      <div class="section-label">⚙️ Preventive Care</div>
+      <h2>Systemic <span>Maintenance & AMC</span></h2>
+      <p>Dedicated commercial maintenance protocols. We handle systematic drainage cleaning, pump testing, electrical load balancing, and high-precision performance tuning.</p>
+      
+      <ul class="feature-list">
+        <li class="feature-item"><i></i> Quarterly systemic audits</li>
+        <li class="feature-item"><i></i> Drain pump & valve check</li>
+        <li class="feature-item"><i></i> Priority emergency calls</li>
+        <li class="feature-item"><i></i> Gas pressure stabilization</li>
+      </ul>
+
+      <div class="repair-actions">
+        <a href="{{ url_for('contact') }}" class="btn-primary" style="padding: 14px 32px; border-radius: 50px;">Explore AMC Plans</a>
         <a href="tel:+91XXXXXXXXXX" class="btn-outline" style="padding: 14px 32px; border-radius: 50px; border-color: var(--blue); color: var(--blue);">📞 Call Us Now</a>
       </div>
     </div>
