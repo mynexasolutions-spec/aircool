@@ -1,0 +1,541 @@
+{% extends 'base.html' %}
+
+{% block title %}Our Service Areas — Bangalore, Jaipur & Rudrapur | Air Cool Tech{% endblock %}
+
+{% block extra_css %}
+<style>
+  /* ============================================================
+     BANNER (REUSED FROM ABOUT/SERVICES)
+  ============================================================ */
+  .service-banner {
+    background: var(--blue);
+    position: relative;
+    overflow: hidden;
+    padding: 80px 5% 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+  }
+  .service-banner::before,
+  .service-banner::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.25);
+    pointer-events: none;
+  }
+  .service-banner::before { width: 300px; height: 300px; left: -100px; bottom: -120px; }
+  .service-banner::after  { width: 220px; height: 220px; right: -70px; top: -90px; }
+
+  .banner-text { text-align: center; position: relative; z-index: 2; }
+  .banner-text h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    font-weight: 900;
+    color: white;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+  }
+  .banner-breadcrumb { font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 12px; }
+  .banner-breadcrumb a { color: rgba(255,255,255,0.85); text-decoration: none; }
+  .banner-breadcrumb span { margin: 0 6px; }
+
+  /* ============================================================
+     CITIES GRID (REUSED FROM INDEX)
+  ============================================================ */
+  .cities-section { padding: 60px 4%; background: var(--white); }
+  .cities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto 60px;
+  }
+  .city-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 300px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .city-card:hover { transform: translateY(-8px); }
+  .city-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .city-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26, 45, 62, 0.9) 0%, rgba(26, 45, 62, 0.2) 60%);
+  }
+  .city-info {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    color: white;
+    z-index: 2;
+  }
+  .city-name { font-size: 1.5rem; font-weight: 800; font-family: 'Nunito', sans-serif; margin-bottom: 4px; }
+  .city-tag { background: var(--blue); padding: 4px 12px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+
+  /* ============================================================
+     LOCATION BREAKDOWN BANNERS
+  ============================================================ */
+  .loc-breakdown-section { padding-bottom: 80px; }
+  .city-block { padding: 60px 5%; margin-bottom: 20px; border-radius: 30px; }
+  .city-block-alt { background: #f4f9fd; }
+  
+  .city-block-header { 
+    display: grid; 
+    grid-template-columns: 1fr auto; 
+    align-items: end; 
+    gap: 30px; 
+    max-width: 1100px; 
+    margin: 0 auto 40px; 
+  }
+  .city-title-box h2 { font-size: 2.2rem; font-weight: 900; color: var(--dark); margin-bottom: 12px; }
+  .city-title-box h2 span { color: var(--blue); }
+  .city-title-box p { color: var(--gray-text); font-size: 1.05rem; }
+
+  .area-grid { 
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 15px; 
+    max-width: 1100px; 
+    margin: 0 auto 50px; 
+  }
+  .area-item { 
+    background: white; 
+    padding: 12px 18px; 
+    border-radius: 14px; 
+    font-size: 0.9rem; 
+    font-weight: 600; 
+    color: var(--dark-blue); 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+    gap: 8px;
+    border: 1px solid rgba(58, 155, 213, 0.1);
+    box-shadow: 0 4px 12px rgba(58, 155, 213, 0.05);
+  }
+  .area-item::before { content: '📍'; font-size: 0.9rem; }
+
+  .city-service-links {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px dashed var(--blue-light);
+  }
+  .city-service-links h4 { font-size: 1.1rem; color: var(--dark); margin-bottom: 24px; }
+  .seo-links { display: flex; flex-direction: column; gap: 15px; }
+  .seo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8fbfe;
+    padding: 12px 15px;
+    border-radius: 15px;
+    border: 1px solid #eef5fa;
+    transition: all 0.2s;
+  }
+  .seo-item:hover { border-color: var(--blue); background: white; }
+  .seo-left { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; flex: 1; }
+  .seo-img { width: 45px; height: 45px; border-radius: 10px; object-fit: cover; }
+  .seo-info { display: flex; flex-direction: column; }
+  .seo-name { font-size: 0.95rem; font-weight: 800; color: var(--dark); }
+  .seo-tag { font-size: 0.75rem; color: var(--blue); font-weight: 700; }
+  .seo-btn { 
+    background: var(--blue); 
+    color: white; 
+    text-decoration: none; 
+    padding: 8px 16px; 
+    border-radius: 50px; 
+    font-size: 0.8rem; 
+    font-weight: 700; 
+    box-shadow: 0 4px 8px rgba(58, 155, 213, 0.2);
+  }
+
+  .city-cta-footer { 
+    display: flex; 
+    gap: 15px; 
+    margin-top: 30px; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+  }
+
+  @media (max-width: 1024px) {
+    .area-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .cities-grid { grid-template-columns: 1fr; }
+    .city-block-header { grid-template-columns: 1fr; text-align: center; }
+    .area-grid { grid-template-columns: repeat(2, 1fr); }
+    .city-title-box h2 { font-size: 1.8rem; }
+  }
+  @media (max-width: 480px) {
+    .cities-section { padding: 30px 4% 0; }
+    .cities-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 30px; }
+    .city-card { height: 120px; border-radius: 12px; }
+    .city-info { left: 10px; bottom: 10px; }
+    .city-name { font-size: 0.85rem; margin-bottom: 2px; }
+    .city-tag { font-size: 0.5rem; padding: 2px 6px; }
+
+    .city-block { padding: 35px 5%; }
+    .area-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 30px; }
+    .area-item { font-size: 0.65rem; padding: 10px 4px; border-radius: 8px; gap: 4px; }
+    .area-item::before { font-size: 0.7rem; }
+
+    .seo-img { width: 35px; height: 35px; }
+    .seo-name { font-size: 0.8rem; }
+    .seo-tag { font-size: 0.65rem; }
+    .seo-btn { font-size: 0.7rem; padding: 6px 12px; }
+  }
+
+  /* ============================================================
+     CTA SECTION (MATCHING ABOUT PAGE)
+  ============================================================ */
+  .cta-section { background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%); padding: 80px 5%; text-align: center; color: white; position: relative; overflow: hidden; }
+  .cta-section .section-heading { color: white; margin-bottom: 20px; }
+  .cta-section .section-heading span { color: var(--blue-pale); }
+  .cta-section .section-sub { color: rgba(255,255,255,0.85); margin-bottom: 40px; }
+  
+  .cta-btns { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+  .btn-cta { 
+    padding: 16px 36px; 
+    border-radius: 50px; 
+    font-weight: 700; 
+    font-size: 1.05rem; 
+    text-decoration: none; 
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-cta-primary { background: white; color: var(--blue); }
+  .btn-cta-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+  .btn-cta-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.4); }
+  .btn-cta-outline:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-3px); }
+
+  .bg-blue-gradient { background: linear-gradient(135deg, #f8fbfe 0%, #edf6fc 100%); }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ============================================================
+     BANNER
+============================================================ -->
+<section class="service-banner">
+  <div class="banner-text">
+    <div class="banner-breadcrumb">
+      <a href="{{ url_for('index') }}">Home</a>
+      <span>/</span>
+      <span style="color: white; font-weight: 800;">Our Locations</span>
+    </div>
+    <h1>Premium Service in <span>Your City</span></h1>
+    <p style="color: rgba(255,255,255,0.9); font-weight: 600;">Fast, reliable &amp; affordable appliance repair services near you.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     CITY CARDS
+============================================================ -->
+<section class="cities-section">
+  <div class="cities-grid">
+    <a href="#bangalore" class="city-card">
+      <img src="{{ url_for('static', filename='images/bangalore.png') }}" alt="Bangalore" />
+      <div class="city-overlay"></div>
+      <div class="city-info">
+        <div class="city-name">Bangalore</div>
+        <span class="city-tag">Available Now</span>
+      </div>
+    </a>
+    <a href="#jaipur" class="city-card">
+      <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?w=600&auto=format&fit=crop" alt="Jaipur" />
+      <div class="city-overlay"></div>
+      <div class="city-info">
+        <div class="city-name">Jaipur</div>
+        <span class="city-tag">Available Now</span>
+      </div>
+    </a>
+    <a href="#rudrapur" class="city-card">
+      <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&auto=format&fit=crop&sat=-100" alt="Rudrapur" />
+      <div class="city-overlay"></div>
+      <div class="city-info">
+        <div class="city-name">Rudrapur</div>
+        <span class="city-tag">Available Now</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="loc-breakdown-section">
+
+  <!-- BANGALORE -->
+  <div class="city-block" id="bangalore">
+    <div class="city-block-header">
+      <div class="city-title-box">
+        <h2>Expert Repair in <span>Bangalore</span></h2>
+        <p>Providing doorstep appliance services across Silicon Valley's major sectors.</p>
+      </div>
+      <div class="city-cta-footer" style="margin-top: 0;">
+        <a href="tel:+918630872674" class="btn-primary" style="padding: 12px 32px; border-radius: 50px; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">📞 Call Now</a>
+      </div>
+    </div>
+    <div class="area-grid">
+      <div class="area-item">Koramangala</div>
+      <div class="area-item">Indiranagar</div>
+      <div class="area-item">Whitefield</div>
+      <div class="area-item">HSR Layout</div>
+      <div class="area-item">Jayanagar</div>
+      <div class="area-item">Marathahalli</div>
+      <div class="area-item">Bellandur</div>
+      <div class="area-item">Electronic City</div>
+    </div>
+    <div class="city-service-links">
+      <h4>Services Available in Bangalore:</h4>
+      <div class="seo-links">
+        <div class="seo-item">
+          <a href="{{ url_for('ac_repair') }}" class="seo-left">
+            <img src="{{ url_for('static', filename='images/ac_repair.jpg') }}" class="seo-img" />
+            <div class="seo-info">
+              <span class="seo-name">AC Repair Bangalore</span>
+              <span class="seo-tag">Split & Window</span>
+            </div>
+          </a>
+          <a href="{{ url_for('contact') }}" class="seo-btn">Book Now</a>
+        </div>
+        <div class="seo-item">
+          <a href="{{ url_for('fridge_repair') }}" class="seo-left">
+            <img src="{{ url_for('static', filename='images/fridge_repair.jpg') }}" class="seo-img" />
+            <div class="seo-info">
+              <span class="seo-name">Fridge Repair Bangalore</span>
+              <span class="seo-tag">Double Door & Side-by-Side</span>
+            </div>
+          </a>
+          <a href="{{ url_for('contact') }}" class="seo-btn">Book Now</a>
+        </div>
+        <div class="seo-item">
+          <a href="{{ url_for('washing_machine') }}" class="seo-left">
+            <img src="{{ url_for('static', filename='images/washing_machine.png') }}" class="seo-img" />
+            <div class="seo-info">
+              <span class="seo-name">Washing Machine Fix Bangalore</span>
+              <span class="seo-tag">Top-Load & Front-Load</span>
+            </div>
+          </a>
+          <a href="{{ url_for('contact') }}" class="seo-btn">Book Now</a>
+        </div>
+        <div class="seo-item">
+          <a href="{{ url_for('geyser_repair') }}" class="seo-left">
+            <img src="{{ url_for('static', filename='images/geyser.png') }}" class="seo-img" />
+            <div class="seo-info">
+              <span class="seo-name">Geyser Service Bangalore</span>
+              <span class="seo-tag">Industrial & Residential</span>
+            </div>
+          </a>
+          <a href="{{ url_for('contact') }}" class="seo-btn">Book Now</a>
+        </div>
+        <div class="seo-item">
+          <a href="{{ url_for('cassette_ac') }}" class="seo-left">
+            <img src="{{ url_for('static', filename='images/cassate_ac.png') }}" class="seo-img" />
+            <div class="seo-info">
+              <span class="seo-name">Cassette AC Bangalore</span>
+              <span class="seo-tag">Commercial Installation</span>
+            </div>
+          </a>
+          <a href="{{ url_for('contact') }}" class="seo-btn">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAIPUR -->
+  <div class="city-block city-block-alt" id="jaipur">
+    <div class="city-block-header">
+      <div class="city-title-box">
+        <h2>Premium Care in <span>Jaipur</span></h2>
+        <p>The Pink City's most trusted technicians for all home appliances.</p>
+      </div>
+      <div class="city-cta-footer" style="margin-top: 0;">
+        <a href="tel:+918630872674" class="btn-primary" style="padding: 12px 32px; border-radius: 50px; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">📞 Call Now</a>
+      </div>
+    </div>
+    <div class="area-grid">
+      <div class="area-item">Malviya Nagar</div>
+      <div class="area-item">Mansarovar</div>
+      <div class="area-item">Pratap Nagar</div>
+      <div class="area-item">Vaishali Nagar</div>
+      <div class="area-item">Civil Lines</div>
+      <div class="area-item">Raja Park</div>
+      <div class="area-item">Bani Park</div>
+      <div class="area-item">C-Scheme</div>
+    </div>
+    <div class="city-service-links">
+      <h4>Services Available in Jaipur:</h4>
+      <div class="seo-links">
+        <div class="seo-item">
+          <a href="{{ url_for('ac_repair') }}" class="seo-left">
+            <img src="{{ url_for('static', filename='images/ac_repair.jpg') }}" class="seo-img" />
+            <div class="seo-info">
+              <span class="seo-name">AC Repair Jaipur</span>
+              <span class="seo-tag">Split & Window</span>
+            </div>
+          </a>
+          <a href="{{ url_for('contact') }}" class="seo-btn">Book Now</a>
+        </div>
+        <div class="seo-item">
+          <a href="{{ url_for('fridge_repair') }}" class="seo-left">
+            <img src="{{ url_for('static', filename='images/fridge_repair.jpg') }}" class="seo-img" />
+            <div class="seo-info">
+              <span class="seo-name">Fridge Repair Jaipur</span>
+              <span class="seo-tag">Double Door & Side-by-Side</span>
+            </div>
+          </a>
+          <a href="{{ url_for('contact') }}" class="seo-btn">Book Now</a>
+        </div>
+        <div class="seo-item">
+          <a href="{{ url_for('washing_machine') }}" class="seo-left">
+            <img src="{{ url_for('static', filename='images/washing_machine.png') }}" class="seo-img" />
+            <div class="seo-info">
+              <span class="seo-name">Washing Machine Fix Jaipur</span>
+              <span class="seo-tag">Top-Load & Front-Load</span>
+            </div>
+          </a>
+          <a href="{{ url_for('contact') }}" class="seo-btn">Book Now</a>
+        </div>
+        <div class="seo-item">
+          <a href="{{ url_for('geyser_repair') }}" class="seo-left">
+            <img src="{{ url_for('static', filename='images/geyser.png') }}" class="seo-img" />
+            <div class="seo-info">
+              <span class="seo-name">Geyser Service Jaipur</span>
+              <span class="seo-tag">Industrial & Residential</span>
+            </div>
+          </a>
+          <a href="{{ url_for('contact') }}" class="seo-btn">Book Now</a>
+        </div>
+        <div class="seo-item">
+          <a href="{{ url_for('cassette_ac') }}" class="seo-left">
+            <img src="{{ url_for('static', filename='images/cassate_ac.png') }}" class="seo-img" />
+            <div class="seo-info">
+              <span class="seo-name">Cassette AC Jaipur</span>
+              <span class="seo-tag">Commercial Installation</span>
+            </div>
+          </a>
+          <a href="{{ url_for('contact') }}" class="seo-btn">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RUDRAPUR -->
+  <div class="city-block" id="rudrapur">
+    <div class="city-block-header">
+      <div class="city-title-box">
+        <h2>Local Service in <span>Rudrapur</span></h2>
+        <p>Rapid response appliance repair in the heart of Rudrapur.</p>
+      </div>
+      <div class="city-cta-footer" style="margin-top: 0;">
+        <a href="tel:+918630872674" class="btn-primary" style="padding: 12px 32px; border-radius: 50px; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">📞 Call Now</a>
+      </div>
+    </div>
+    <div class="area-grid">
+      <div class="area-item">Kichha Road</div>
+      <div class="area-item">Transit Camp</div>
+      <div class="area-item">Adarsh Colony</div>
+      <div class="area-item">Shimla Bahadur</div>
+      <div class="area-item">Awas Vikas</div>
+      <div class="area-item">Omaxe City</div>
+      <div class="area-item">Metropolis</div>
+      <div class="area-item">Pantnagar</div>
+    </div>
+    <div class="city-service-links">
+      <h4>Services Available in Rudrapur:</h4>
+      <div class="seo-links">
+        <div class="seo-item">
+          <a href="{{ url_for('ac_repair') }}" class="seo-left">
+            <img src="{{ url_for('static', filename='images/ac_repair.jpg') }}" class="seo-img" />
+            <div class="seo-info">
+              <span class="seo-name">AC Repair Rudrapur</span>
+              <span class="seo-tag">Split & Window</span>
+            </div>
+          </a>
+          <a href="{{ url_for('contact') }}" class="seo-btn">Book Now</a>
+        </div>
+        <div class="seo-item">
+          <a href="{{ url_for('fridge_repair') }}" class="seo-left">
+            <img src="{{ url_for('static', filename='images/fridge_repair.jpg') }}" class="seo-img" />
+            <div class="seo-info">
+              <span class="seo-name">Fridge Repair Rudrapur</span>
+              <span class="seo-tag">Double Door & Side-by-Side</span>
+            </div>
+          </a>
+          <a href="{{ url_for('contact') }}" class="seo-btn">Book Now</a>
+        </div>
+        <div class="seo-item">
+          <a href="{{ url_for('washing_machine') }}" class="seo-left">
+            <img src="{{ url_for('static', filename='images/washing_machine.png') }}" class="seo-img" />
+            <div class="seo-info">
+              <span class="seo-name">Washing Machine Fix Rudrapur</span>
+              <span class="seo-tag">Top-Load & Front-Load</span>
+            </div>
+          </a>
+          <a href="{{ url_for('contact') }}" class="seo-btn">Book Now</a>
+        </div>
+        <div class="seo-item">
+          <a href="{{ url_for('geyser_repair') }}" class="seo-left">
+            <img src="{{ url_for('static', filename='images/geyser.png') }}" class="seo-img" />
+            <div class="seo-info">
+              <span class="seo-name">Geyser Service Rudrapur</span>
+              <span class="seo-tag">Industrial & Residential</span>
+            </div>
+          </a>
+          <a href="{{ url_for('contact') }}" class="seo-btn">Book Now</a>
+        </div>
+        <div class="seo-item">
+          <a href="{{ url_for('cassette_ac') }}" class="seo-left">
+            <img src="{{ url_for('static', filename='images/cassate_ac.png') }}" class="seo-img" />
+            <div class="seo-info">
+              <span class="seo-name">Cassette AC Rudrapur</span>
+              <span class="seo-tag">Commercial Installation</span>
+            </div>
+          </a>
+          <a href="{{ url_for('contact') }}" class="seo-btn">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============================================================
+     CTA (MATCHING ABOUT PAGE)
+============================================================ -->
+<section class="cta-section">
+  <div class="banner-swirl-extra s1" style="opacity: 0.2; left: -50px; top: -50px; border-color: white;"></div>
+  <div class="banner-swirl-extra s2" style="opacity: 0.15; right: -30px; bottom: -30px; border-color: white;"></div>
+  
+  <div class="section-center" style="max-width: 800px; margin: 0 auto;">
+    <h2 class="section-heading">Ready to Experience <span>Premium Service?</span></h2>
+    <p class="section-sub" style="font-size: 1.1rem;">Don't let a broken appliance ruin your day. Join 12,000+ happy customers and book your expert technician in under 60 seconds.</p>
+    
+    <div class="cta-btns">
+      <a href="{{ url_for('contact') }}" class="btn-cta btn-cta-primary">
+        <span>⚡ Book Your Repair</span>
+      </a>
+      <a href="tel:+918630872674" class="btn-cta btn-cta-outline">
+        <span>📞 Call +91 86308 72674</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

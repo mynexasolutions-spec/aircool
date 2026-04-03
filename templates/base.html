@@ -50,13 +50,13 @@
       });
     }
 
-    // Toggle dropdown in mobile
-    const dropdownLink = document.querySelector('.dropdown > a');
-    if (dropdownLink) {
-      dropdownLink.addEventListener('click', (e) => {
+    // Toggle dropdowns in mobile
+    const dropdownLinks = document.querySelectorAll('.dropdown > a');
+    dropdownLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
         if (window.innerWidth <= 1024) {
           e.preventDefault();
-          const menu = e.target.nextElementSibling;
+          const menu = link.nextElementSibling;
           if (menu) {
             const isOpen = menu.style.display === 'flex';
             menu.style.display = isOpen ? 'none' : 'flex';
@@ -64,16 +64,16 @@
           }
         }
       });
-    }
+    });
   </script>
   {% block extra_js %}{% endblock %}
 
   <!-- FLOATING CONTACT ICONS -->
   <div class="floating-contact">
-    <a href="https://wa.me/91XXXXXXXXXX" class="floating-icon whatsapp" target="_blank" title="WhatsApp Us">
+    <a href="https://wa.me/918630872674" class="floating-icon whatsapp" target="_blank" title="WhatsApp Us">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
     </a>
-    <a href="tel:+91XXXXXXXXXX" class="floating-icon phone" title="Call Us">
+    <a href="tel:+918630872674" class="floating-icon phone" title="Call Us">
         <div class="phone-icon-wrap">📞</div>
     </a>
   </div>

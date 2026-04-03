@@ -14,6 +14,11 @@ def services():
     return render_template('pages/services.html')
 
 
+@app.route('/cities')
+def cities():
+    return render_template('pages/cities.html')
+
+
 @app.route('/about')
 def about():
     return render_template('pages/about.html')
