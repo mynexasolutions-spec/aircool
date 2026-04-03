@@ -2,31 +2,1195 @@
 
 {% block title %}About Us — Air Cool Tech Services{% endblock %}
 
+{% block extra_css %}
+<style>
+  /* ============================================================
+     ABOUT BANNER
+  ============================================================ */
+  .about-banner {
+    background: var(--blue);
+    position: relative;
+    overflow: hidden;
+    padding: 64px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+  }
+  .about-banner::before,
+  .about-banner::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.25);
+    pointer-events: none;
+  }
+  .about-banner::before { width: 260px; height: 260px; left: -80px; bottom: -100px; }
+  .about-banner::after  { width: 200px; height: 200px; right: -60px; top: -80px; }
+
+  .banner-swirl-extra {
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.18);
+    pointer-events: none;
+  }
+  .banner-swirl-extra.s1 { width: 140px; height: 140px; right: 60px; bottom: -50px; }
+  .banner-swirl-extra.s2 { width: 100px; height: 100px; left: 120px; top: -40px; }
+
+  .banner-text { text-align: center; position: relative; z-index: 2; }
+  .banner-text h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 900;
+    color: white;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+  .banner-breadcrumb { margin-top: 14px; font-size: 0.82rem; color: rgba(255,255,255,0.75); }
+  .banner-breadcrumb a { color: rgba(255,255,255,0.85); text-decoration: none; }
+  .banner-breadcrumb a:hover { color: white; }
+  .banner-breadcrumb span { margin: 0 6px; }
+
+  /* ============================================================
+     MISSION SECTION
+  ============================================================ */
+  .mission-section { background: var(--white); padding: 80px 5%; }
+  .mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .mission-image-wrap {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    height: 400px;
+    box-shadow: var(--shadow-hover);
+  }
+  .mission-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .mission-image-badge {
+    position: absolute;
+    bottom: 24px; left: 24px;
+    background: var(--blue);
+    color: white;
+    border-radius: 14px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .mission-badge-num { font-family: 'Nunito', sans-serif; font-size: 1.8rem; font-weight: 900; line-height: 1; }
+  .mission-badge-text { font-size: 0.72rem; font-weight: 600; opacity: 0.9; line-height: 1.4; }
+
+  .mission-content { padding: 10px 0; }
+  .mission-points { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+  .mission-point { display: flex; align-items: flex-start; gap: 14px; }
+  .mission-point-icon {
+    width: 42px; height: 42px;
+    min-width: 42px;
+    background: var(--blue-pale);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+  .mission-point-text strong { display: block; font-weight: 700; font-size: 0.92rem; color: var(--dark); margin-bottom: 2px; }
+  .mission-point-text span { font-size: 0.82rem; color: var(--gray-text); line-height: 1.55; }
+
+  /* ============================================================
+     EXPERTISE SECTION
+  ============================================================ */
+  .expertise-section { background: #f0f7fc; padding: 80px 5%; }
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+    margin-top: 48px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .expertise-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 0;
+    border: 1.5px solid transparent;
+    box-shadow: 0 4px 16px rgba(58, 155, 213, 0.08);
+    transition: all 0.28s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .expertise-card:hover { 
+    transform: translateY(-5px); 
+    box-shadow: var(--shadow-hover); 
+    border-color: var(--blue-light); 
+  }
+  .expertise-card::before { display: none; }
+  .expertise-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    border-radius: 0;
+    overflow: hidden;
+    margin-bottom: 0;
+    background: #f4f9fd;
+    transition: transform 0.3s ease;
+  }
+  .expertise-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 12px;
+    transition: transform 0.4s ease;
+  }
+  .expertise-card:hover .expertise-img img { transform: scale(1.06); }
+  .expertise-info-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 14px 15px 15px;
+    gap: 8px;
+  }
+  .expertise-title { font-family: 'Nunito', sans-serif; font-size: 1.02rem; font-weight: 900; color: var(--dark); margin-bottom: 0; line-height: 1.2; }
+  .expertise-desc { font-size: 0.76rem; color: var(--gray-text); line-height: 1.45; }
+  .expertise-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 0; }
+  .expertise-tag { background: var(--blue-pale); color: var(--blue-dark); font-size: 0.66rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.6px; }
+  .expertise-info-wrap .service-actions {
+    margin-top: auto;
+    padding-top: 10px;
+    display: flex;
+    gap: 8px;
+  }
+
+  /* ============================================================
+     TEAM SECTION
+  ============================================================ */
+  .team-section { background: var(--white); padding: 80px 5%; }
+  .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
+  .team-card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.28s, box-shadow 0.28s; position: relative; }
+  .team-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+  .team-img-wrap { position: relative; height: 280px; overflow: hidden; border-radius: 20px 20px 0 0; }
+  .team-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.5s; }
+  .team-card:hover .team-img-wrap img { transform: scale(1.05); }
+
+  .team-socials { position: absolute; left: 12px; top: 16px; display: flex; flex-direction: column; gap: 7px; z-index: 3; }
+  .social-icon { width: 32px; height: 32px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s, transform 0.2s; text-decoration: none; }
+  .social-icon:hover { background: var(--blue-dark); transform: scale(1.1); }
+  .social-icon svg { width: 14px; height: 14px; fill: white; }
+  .team-info { padding: 18px 20px 22px; border-top: 1px solid #edf5fb; }
+  .team-name { font-family: 'Nunito', sans-serif; font-size: 1.05rem; font-weight: 800; color: var(--dark); margin-bottom: 3px; }
+  .team-role { font-size: 0.78rem; color: var(--gray-text); font-weight: 500; }
+
+  /* ============================================================
+     REVIEWS SECTION
+  ============================================================ */
+  .reviews-section { background: #f0f7fc; padding: 80px 0; overflow: hidden; }
+  .reviews-section .section-center, .reviews-section .section-sub { padding: 0 5%; }
+  .reviews-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 24px;
+    margin-top: 48px;
+    padding: 10px 10% 40px;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none; /* IE/Edge */
+    scrollbar-width: none;    /* Firefox */
+  }
+  .reviews-grid::-webkit-scrollbar { display: none; }
+  .review-card {
+    min-width: calc(33.333% - 16px);
+    max-width: calc(33.333% - 16px);
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 30px 26px;
+    box-shadow: var(--shadow);
+    border: 1.5px solid transparent;
+    transition: all 0.25s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .review-card:hover { border-color: var(--blue-light); box-shadow: var(--shadow-hover); transform: translateY(-4px); }
+  .review-quote { font-size: 2.5rem; line-height: 1; color: var(--blue); font-family: Georgia, serif; margin-bottom: 14px; display: block; }
+  .review-text { font-size: 0.88rem; color: var(--gray-text); line-height: 1.75; margin-bottom: 22px; }
+  .review-stars { display: flex; gap: 3px; margin-bottom: 16px; }
+  .star { color: #f5a623; font-size: 1rem; }
+  .review-author { display: flex; align-items: center; gap: 12px; }
+  .review-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid var(--blue-pale); }
+  .review-author-info strong { display: block; font-size: 0.88rem; font-weight: 700; color: var(--dark); }
+  .review-author-info span { font-size: 0.72rem; color: var(--gray-text); }
+
+  /* ============================================================
+     EXPERIENCE SECTION
+  ============================================================ */
+  .exp-section { background: var(--white); padding: 80px 5%; border-top: 1px solid #f0f7fc; }
+  .exp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 48px; }
+  .exp-card { text-align: center; padding: 20px; transition: transform 0.3s; }
+  .exp-card:hover { transform: translateY(-5px); }
+  .exp-icon { font-size: 2.8rem; margin-bottom: 20px; display: block; }
+  .exp-num { font-family: 'Nunito', sans-serif; font-size: 2.2rem; font-weight: 950; color: var(--blue); margin-bottom: 8px; line-height: 1; }
+  .exp-title { font-size: 1.1rem; font-weight: 800; color: var(--dark); margin-bottom: 12px; }
+  .exp-desc { font-size: 0.88rem; color: var(--gray-text); line-height: 1.6; }
+
+  @media (max-width: 860px) {
+    .exp-grid { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .exp-icon { font-size: 1.8rem; margin-bottom: 12px; }
+    .exp-num { font-size: 1.4rem; }
+    .exp-title { font-size: 0.8rem; line-height: 1.2; }
+    .exp-desc { font-size: 0.7rem; }
+  }
+
+  @media (max-width: 480px) {
+    .exp-section { padding: 40px 3% 20px; }
+    .exp-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 24px; }
+    .exp-card { padding: 4px; }
+    .exp-icon { font-size: 1.3rem; margin-bottom: 6px; }
+    .exp-num { font-size: 1.1rem; }
+    .exp-title { font-size: 0.65rem; line-height: 1.3; margin-bottom: 0px; height: 32px; display: flex; align-items: center; justify-content: center; }
+    .exp-desc { display: none; }
+  }
+
+  /* ============================================================
+     FAQ SECTION
+  ============================================================ */
+  .faq-section { background: var(--white); padding: 80px 5%; }
+  .faq-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; align-items: start; }
+  .faq-img-wrap { border-radius: 20px; overflow: hidden; height: 500px; box-shadow: var(--shadow); position: relative; }
+  .faq-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .faq-list { display: flex; flex-direction: column; gap: 15px; margin-top: 32px; }
+  .faq-item { background: #f8fbfe; border-radius: 14px; border: 1px solid #eef5fa; overflow: hidden; transition: all 0.3s; }
+  .faq-item.active { border-color: var(--blue-pale); background: #fff; box-shadow: 0 10px 25px rgba(58,155,213,0.1); }
+  .faq-question { padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 700; color: var(--dark); font-family: 'Nunito', sans-serif; font-size: 1.05rem; }
+  .faq-toggle { width: 28px; height: 28px; background: var(--blue-pale); color: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: all 0.3s; }
+  .faq-item.active .faq-toggle { background: var(--blue); color: #fff; transform: rotate(45deg); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; padding: 0 24px; color: var(--gray-text); font-size: 0.92rem; line-height: 1.6; }
+  .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 22px; }
+
+  @media (max-width: 991px) {
+    .faq-grid { grid-template-columns: 1fr; gap: 40px; }
+    .faq-img-wrap { height: 350px; }
+  }
+
+  @media (max-width: 480px) {
+    .faq-question { padding: 18px 20px; font-size: 0.95rem; }
+    .faq-answer { font-size: 0.85rem; }
+  }
+
+  /* ============================================================
+     CTA SECTION
+  ============================================================ */
+  .cta-section { background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%); padding: 80px 5%; text-align: center; color: white; position: relative; overflow: hidden; }
+  .cta-section .section-heading { color: white; margin-bottom: 20px; }
+  .cta-section .section-heading span { color: var(--blue-pale); }
+  .cta-section .section-sub { color: rgba(255,255,255,0.85); margin-bottom: 40px; }
+  
+  .cta-btns { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+  .btn-cta { 
+    padding: 16px 36px; 
+    border-radius: 50px; 
+    font-weight: 700; 
+    font-size: 1.05rem; 
+    text-decoration: none; 
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-cta-primary { background: white; color: var(--blue); }
+  .btn-cta-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+  .btn-cta-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.4); }
+  .btn-cta-outline:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-3px); }
+
+  @media (max-width: 600px) {
+    .cta-section { padding: 60px 5%; }
+    .btn-cta { width: 100%; justify-content: center; padding: 14px 24px; font-size: 0.95rem; }
+    .cta-btns { gap: 12px; }
+  }
+
+  /* ============================================================
+     RESPONSIVE
+  ============================================================ */
+  @media (max-width: 1024px) {
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .expertise-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 860px) {
+    .mission-grid { grid-template-columns: 1fr; gap: 36px; }
+    .mission-image-wrap { height: 300px; }
+    .reviews-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
+
+    /* Mobile order: label+heading first, then paragraph, then image, then points */
+    .mission-content .section-label { order: 1; text-align: center; margin: 0 auto 14px; display: block; }
+    .mission-content .section-heading { order: 2; text-align: center !important; }
+    .mission-content .section-sub { order: 3; text-align: center; }
+    .mission-image-wrap { order: 4; }
+    .mission-points { order: 5; }
+
+    .mission-grid {
+      display: flex;
+      flex-direction: column;
+    }
+    .mission-content {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  /* ============================================================
+     EXPERTISE CAROUSEL (mobile only)
+  ============================================================ */
+  @media (max-width: 860px) {
+    .expertise-section { padding: 56px 0 !important; }
+    .expertise-section .section-center { padding: 0 4%; }
+    .expertise-section .section-sub { padding: 0 4%; }
+
+    /* Turn grid into a scroll track */
+    .expertise-grid {
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 12px;
+      margin-top: 32px;
+      padding: 8px 4% 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      flex-wrap: nowrap;
+    }
+    .expertise-grid::-webkit-scrollbar { display: none; }
+
+    /* Each card: exactly half the visible area (2 per row look) */
+    .expertise-card {
+      min-width: calc(50vw - 18px);
+      max-width: calc(50vw - 18px);
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      padding: 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1.5px solid transparent;
+    }
+    .expertise-card:hover { transform: none; }
+    .expertise-card::before { display: none; }
+
+    /* Image fills top like service card */
+    .expertise-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      height: auto;
+      border-radius: 0;
+      margin-bottom: 0;
+      background: #f4f9fd;
+    }
+    .expertise-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 10px;
+    }
+
+    /* Info area below image */
+    .expertise-info-wrap {
+      padding: 10px 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+    .expertise-title { font-size: 0.88rem; margin-bottom: 0; }
+    .expertise-desc { font-size: 0.72rem; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin: 0; }
+    .expertise-tags { margin-top: 6px; gap: 5px; }
+    .expertise-tag { font-size: 0.6rem; padding: 3px 8px; }
+
+    /* Buttons inside carousel cards */
+    .expertise-info-wrap .service-actions {
+      display: flex;
+      gap: 4px;
+      margin-top: auto;
+      padding-top: 16px;
+      flex-wrap: wrap;
+    }
+    .expertise-info-wrap .service-btn {
+      font-size: 0.58rem;
+      padding: 5px 6px;
+      flex: 1 1 100%;
+      text-align: center;
+      white-space: nowrap;
+    }
+  }
+
+  /* Carousel Dots */
+  .carousel-dots { 
+    display: flex; 
+    justify-content: center; 
+    gap: 8px; 
+    padding: 10px 0 30px; 
+    position: relative; 
+    z-index: 5;
+  }
+  .carousel-dots .dot { 
+    width: 8px; 
+    height: 8px; 
+    background: rgba(58,155,213,0.2); 
+    border-radius: 50%; 
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  }
+  .carousel-dots .dot.active { 
+    background: var(--blue); 
+    width: 24px; 
+    border-radius: 4px; 
+  }
+
+  @media (max-width: 860px) {
+    .carousel-dots { padding-bottom: 24px; margin-top: -8px; }
+  }
+
+  @media (max-width: 600px) {
+    .mission-section, .team-section { padding: 56px 4%; }
+    .about-banner { padding: 48px 5%; }
+    .banner-text h1 { font-size: 1.7rem; }
+
+
+    .team-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .team-img-wrap { height: 200px; }
+    .team-name { font-size: 0.92rem; }
+    .team-role { font-size: 0.7rem; }
+    .team-info { padding: 14px 14px 18px; }
+    .social-icon { width: 26px; height: 26px; }
+    .social-icon svg { width: 11px; height: 11px; }
+
+    .reviews-grid {
+      gap: 14px;
+      margin-top: 32px;
+      padding: 8px 4% 20px;
+    }
+    .review-card {
+      min-width: 78vw;
+      max-width: 78vw;
+      padding: 22px 20px;
+    }
+    .review-quote { font-size: 1.8rem; margin-bottom: 8px; }
+    .review-text { font-size: 0.78rem; margin-bottom: 16px; }
+    .review-avatar { width: 36px; height: 36px; }
+    .review-author-info strong { font-size: 0.78rem; }
+    .review-author-info span { font-size: 0.65rem; }
+    .star { font-size: 0.85rem; }
+  }
+  @media (max-width: 400px) {
+    .team-grid { gap: 10px; }
+    .team-img-wrap { height: 170px; }
+    .review-card { min-width: 85vw; max-width: 85vw; }
+  }
+</style>
+{% endblock %}
+
 {% block content %}
 
-<div class="page-hero">
-  <h1>About Us</h1>
-  <p>A decade of trusted appliance repair across India — certified, reliable, and always on time.</p>
-</div>
+<!-- ============================================================
+     BANNER
+============================================================ -->
+<section class="about-banner">
+  <div class="banner-swirl-extra s1"></div>
+  <div class="banner-swirl-extra s2"></div>
+  <div class="banner-text">
+    <h1>About Air Cool Tech</h1>
+    <p class="banner-breadcrumb">
+      <a href="{{ url_for('index') }}">Home</a>
+      <span>›</span>
+      About Us
+    </p>
+  </div>
+</section>
 
-<section class="section">
-  <div class="about-grid">
-    <img src="{{ url_for('static', filename='images/why_us.png') }}" alt="About Air Cool Tech" class="about-img" />
-    <div class="about-text">
-      <h2>Who We <span>Are</span></h2>
-      <p>Air Cool Tech Services is one of India's most trusted home appliance repair networks, with a decade of experience serving millions of households across Bangalore, Jaipur, and Delhi.</p>
-      <p>Our certified technicians specialise in AC systems (split, window, cassette, VRF/VRV), refrigerators, washing machines, and geysers — covering all major brands with genuine spare parts at transparent prices.</p>
-      <p>From a single-visit repair to annual maintenance contracts, we're committed to restoring your comfort—fast.</p>
-      <div class="about-pills">
-        <span class="about-pill">ISO Certified</span>
-        <span class="about-pill">500+ Technicians</span>
-        <span class="about-pill">All Major Brands</span>
-        <span class="about-pill">30-Day Warranty</span>
-        <span class="about-pill">Same-Day Service</span>
-        <span class="about-pill">Transparent Pricing</span>
+<!-- ============================================================
+     MISSION SECTION
+============================================================ -->
+<section class="mission-section">
+  <div class="mission-grid">
+    <div class="mission-image-wrap">
+      <img src="{{ url_for('static', filename='images/ac_repair.jpg') }}" alt="Air Conditioning Repair" />
+      <div class="mission-image-badge">
+        <div class="mission-badge-num">12+</div>
+        <div class="mission-badge-text">Years of<br>Service</div>
+      </div>
+    </div>
+    <div class="mission-content">
+      <div class="section-label">🎯 Our Mission</div>
+      <h2 class="section-heading">Keeping Your Home<br><span>Cool &amp; Running</span></h2>
+      <p class="section-sub">Air Cool Tech was founded with one goal — to make appliance repair fast, honest, and stress-free. We believe every household deserves reliable cooling and working appliances, backed by technicians you can actually trust.</p>
+      <div class="mission-points">
+        <div class="mission-point">
+          <div class="mission-point-icon">⚡</div>
+          <div class="mission-point-text">
+            <strong>Same-Day Response</strong>
+            <span>We dispatch certified technicians within hours of booking — because breakdowns don't wait.</span>
+          </div>
+        </div>
+        <div class="mission-point">
+          <div class="mission-point-icon">🔒</div>
+          <div class="mission-point-text">
+            <strong>Guaranteed Workmanship</strong>
+            <span>Every repair comes with a 30-day service warranty and genuine spare parts only.</span>
+          </div>
+        </div>
+        <div class="mission-point">
+          <div class="mission-point-icon">💰</div>
+          <div class="mission-point-text">
+            <strong>Transparent Pricing</strong>
+            <span>Upfront quotes before any work begins. No hidden charges, no surprises on the bill.</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ============================================================
+     EXPERTISE SECTION
+============================================================ -->
+<section class="expertise-section">
+  <div class="section-center">
+    <div class="section-label">🛠️ Our Expertise</div>
+    <h2 class="section-heading">What We Do <span>Best</span></h2>
+    <p class="section-sub">From split ACs to commercial VRF systems, from refrigerators to washing machines — our technicians are trained to fix it all.</p>
+  </div>
+
+  <div class="expertise-grid" id="expertiseCarousel">
+
+    <!-- AC Repair -->
+    <div class="expertise-card">
+      <div class="expertise-img">
+        <img src="{{ url_for('static', filename='images/ac_repair.jpg') }}" alt="AC Repair" />
+      </div>
+      <div class="expertise-info-wrap">
+        <span class="expertise-tag">Cooling</span>
+        <h3 class="expertise-title">AC Repair</h3>
+        <p class="expertise-desc">Split, window, inverter, cassette, and VRF/VRV AC systems. Gas refilling, PCB repairs &amp; compressor replacements.</p>
+        <div class="expertise-tags">
+          <span class="expertise-tag">Split AC</span>
+          <span class="expertise-tag">Cassette</span>
+          <span class="expertise-tag">Gas Refill</span>
+        </div>
+        <div class="service-actions">
+          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fridge -->
+    <div class="expertise-card">
+      <div class="expertise-img">
+        <img src="{{ url_for('static', filename='images/fridge_repair.jpg') }}" alt="Refrigerator Repair" />
+      </div>
+      <div class="expertise-info-wrap">
+        <span class="expertise-tag">Kitchen</span>
+        <h3 class="expertise-title">Fridge Repair</h3>
+        <p class="expertise-desc">Cooling failures, compressor issues, ice maker problems and thermostat faults across all brands.</p>
+        <div class="expertise-tags">
+          <span class="expertise-tag">Compressor</span>
+          <span class="expertise-tag">All Brands</span>
+        </div>
+        <div class="service-actions">
+          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Washing Machine -->
+    <div class="expertise-card">
+      <div class="expertise-img">
+        <img src="{{ url_for('static', filename='images/washing_machine.png') }}" alt="Washing Machine Repair" />
+      </div>
+      <div class="expertise-info-wrap">
+        <span class="expertise-tag">Laundry</span>
+        <h3 class="expertise-title">Washing Machine</h3>
+        <p class="expertise-desc">Front &amp; top load drum, motor, PCB, water inlet valve and drainage pump repairs.</p>
+        <div class="expertise-tags">
+          <span class="expertise-tag">Front Load</span>
+          <span class="expertise-tag">Top Load</span>
+        </div>
+        <div class="service-actions">
+          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Geyser -->
+    <div class="expertise-card">
+      <div class="expertise-img">
+        <img src="{{ url_for('static', filename='images/geyser.png') }}" alt="Geyser Repair" />
+      </div>
+      <div class="expertise-info-wrap">
+        <span class="expertise-tag">Water Heating</span>
+        <h3 class="expertise-title">Geyser Repair</h3>
+        <p class="expertise-desc">Electric &amp; gas geyser repairs — heating element, thermostat, pressure valve &amp; installation.</p>
+        <div class="expertise-tags">
+          <span class="expertise-tag">Electric</span>
+          <span class="expertise-tag">Gas</span>
+        </div>
+        <div class="service-actions">
+          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Microwave -->
+    <div class="expertise-card">
+      <div class="expertise-img">
+        <img src="{{ url_for('static', filename='images/cassate_ac.png') }}" alt="Microwave Repair" />
+      </div>
+      <div class="expertise-info-wrap">
+        <span class="expertise-tag">Kitchen</span>
+        <h3 class="expertise-title">Microwave Repair</h3>
+        <p class="expertise-desc">Magnetron, turntable motor, door switch, capacitor and control board repairs.</p>
+        <div class="expertise-tags">
+          <span class="expertise-tag">Solo</span>
+          <span class="expertise-tag">Convection</span>
+        </div>
+        <div class="service-actions">
+          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- AMC Plans -->
+    <div class="expertise-card">
+      <div class="expertise-img">
+        <img src="{{ url_for('static', filename='images/VRB_AC.png') }}" alt="AMC Plans" />
+      </div>
+      <div class="expertise-info-wrap">
+        <span class="expertise-tag">Commercial</span>
+        <h3 class="expertise-title">AMC Plans</h3>
+        <p class="expertise-desc">Annual Maintenance Contracts with priority booking &amp; discounted repair rates.</p>
+        <div class="expertise-tags">
+          <span class="expertise-tag">Annual</span>
+          <span class="expertise-tag">Priority</span>
+        </div>
+        <div class="service-actions">
+          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Carousel Dots Mobile Indicator -->
+  <div class="carousel-dots" id="expertiseDots"></div>
+</section>
+
+<!-- ============================================================
+     TEAM SECTION
+============================================================ -->
+<section class="team-section">
+  <div class="section-center">
+    <div class="section-label">👥 Our Team</div>
+    <h2 class="section-heading">Meet Our <span>Expert Team</span></h2>
+    <p class="section-sub">Certified, background-verified technicians with years of hands-on experience across all appliance brands.</p>
+  </div>
+
+  <div class="team-grid">
+
+    <!-- Member 1 -->
+    <div class="team-card">
+      <div class="team-img-wrap">
+        <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=500&auto=format&fit=crop&q=80" alt="Raj Kumar" />
+        <div class="team-socials">
+          <a class="social-icon" href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a class="social-icon" href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+          </a>
+          <a class="social-icon" href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Raj Kumar</div>
+        <div class="team-role">Lead AC Technician</div>
+      </div>
+    </div>
+
+    <!-- Member 2 -->
+    <div class="team-card">
+      <div class="team-img-wrap">
+        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&auto=format&fit=crop&q=80" alt="Amit Sharma" />
+        <div class="team-socials">
+          <a class="social-icon" href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a class="social-icon" href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+          </a>
+          <a class="social-icon" href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Amit Sharma</div>
+        <div class="team-role">Refrigeration Expert</div>
+      </div>
+    </div>
+
+    <!-- Member 3 -->
+    <div class="team-card">
+      <div class="team-img-wrap">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80" alt="Suresh Patel" />
+        <div class="team-socials">
+          <a class="social-icon" href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a class="social-icon" href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+          </a>
+          <a class="social-icon" href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Suresh Patel</div>
+        <div class="team-role">Appliance Specialist</div>
+      </div>
+    </div>
+
+    <!-- Member 4 -->
+    <div class="team-card">
+      <div class="team-img-wrap">
+        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=80" alt="Priya Nair" />
+        <div class="team-socials">
+          <a class="social-icon" href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a class="social-icon" href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+          </a>
+          <a class="social-icon" href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Priya Nair</div>
+        <div class="team-role">Customer Relations</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     EXPERIENCE SECTION (Trust & Numbers)
+============================================================ -->
+<section class="exp-section">
+  <div class="section-center">
+    <div class="section-label">🏆 Experience &amp; Trust</div>
+    <h2 class="section-heading">Why Thousands <span>Trust Us</span></h2>
+    <p class="section-sub">A decade of commitment to quality, reliability, and honest customer service.</p>
+  </div>
+
+  <div class="exp-grid">
+    <div class="exp-card">
+      <span class="exp-icon">🏢</span>
+      <div class="exp-num">12+</div>
+      <h3 class="exp-title">Years of Journey</h3>
+      <p class="exp-desc">Serving Indian households with a proven track record of excellence since 2012.</p>
+    </div>
+
+    <div class="exp-card">
+      <span class="exp-icon">👨‍🔧</span>
+      <div class="exp-num">18k+</div>
+      <h3 class="exp-title">Repairs Done</h3>
+      <p class="exp-desc">Successfully fixed split ACs, fridges, geysers, and more across multiple cities.</p>
+    </div>
+
+    <div class="exp-card">
+      <span class="exp-icon">👷</span>
+      <div class="exp-num">200+</div>
+      <h3 class="exp-title">Expert Techs</h3>
+      <p class="exp-desc">Background-verified professionals trained on latest multi-brand diagnostics.</p>
+    </div>
+
+    <div class="exp-card">
+      <span class="exp-icon">✅</span>
+      <div class="exp-num">100%</div>
+      <h3 class="exp-title">Quality Assurance</h3>
+      <p class="exp-desc">Every job backed by a 30-day service warranty and genuine spare parts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CUSTOMER REVIEWS
+============================================================ -->
+<section class="reviews-section">
+  <div class="section-center">
+    <div class="section-label">⭐ Happy Customers</div>
+    <h2 class="section-heading">What Our <span>Customers Say</span></h2>
+    <p class="section-sub">12k+ satisfied customers across Bangalore, Jaipur and Delhi trust Air Cool Tech for all their appliance needs.</p>
+  </div>
+
+  <div class="reviews-grid" id="reviewsCarousel">
+
+    <div class="review-card">
+      <span class="review-quote">"</span>
+      <div class="review-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="review-text">My AC stopped cooling in the middle of peak summer. Air Cool Tech sent a technician the same afternoon. Gas refill done, AC running perfectly. Excellent and quick service!</p>
+      <div class="review-author">
+        <img class="review-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop" alt="Neha R." />
+        <div class="review-author-info">
+          <strong>Neha Reddy</strong>
+          <span>Bangalore</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <span class="review-quote">"</span>
+      <div class="review-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="review-text">The washing machine drum was making loud noise. The technician diagnosed the bearing issue in minutes and fixed it in under an hour. Transparent pricing, no hidden costs. Highly recommend!</p>
+      <div class="review-author">
+        <img class="review-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop" alt="Rahul M." />
+        <div class="review-author-info">
+          <strong>Rahul Mehta</strong>
+          <span>Delhi</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <span class="review-quote">"</span>
+      <div class="review-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="review-text">Took the annual AMC plan for 3 ACs in my office. Regular servicing, priority support, and the team is always punctual and professional. Best investment for peace of mind.</p>
+      <div class="review-author">
+        <img class="review-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop" alt="Vikram S." />
+        <div class="review-author-info">
+          <strong>Vikram Sinha</strong>
+          <span>Jaipur</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <span class="review-quote">"</span>
+      <div class="review-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="review-text">Excellent team! I've had multiple appliances serviced by them, and their professionalism and knowledge are truly unmatched. They explain everything clearly and the prices are fair.</p>
+      <div class="review-author">
+        <img class="review-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&auto=format&fit=crop" alt="Anita S." />
+        <div class="review-author-info">
+          <strong>Anita Singh</strong>
+          <span>Jaipur</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <span class="review-quote">"</span>
+      <div class="review-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="review-text">Quick response time and honest diagnostics. They fixed my Samsung double-door fridge which others said needed a compressor change. Saved me a lot of money!</p>
+      <div class="review-author">
+        <img class="review-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&auto=format&fit=crop" alt="Pankaj S." />
+        <div class="review-author-info">
+          <strong>Pankaj Sharma</strong>
+          <span>Delhi</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <span class="review-quote">"</span>
+      <div class="review-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="review-text">Reliable and professional. Their AMC service is worth every penny. The preventative maintenance has kept my washing machine and microvave running smoothly for 3 years now.</p>
+      <div class="review-author">
+        <img class="review-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop" alt="Sandeep V." />
+        <div class="review-author-info">
+          <strong>Sandeep V.</strong>
+          <span>Bangalore</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="carousel-dots" id="reviewsDots"></div>
+</section>
+
+<!-- ============================================================
+     FAQ SECTION
+============================================================ -->
+<section class="faq-section">
+  <div class="section-center" style="margin-bottom: 48px;">
+    <div class="section-label">👋 Common Questions</div>
+    <h2 class="section-heading">Got Questions? <span>We Have Answers.</span></h2>
+    <p class="section-sub">Everything you need to know about our repair services, warranties, and process.</p>
+  </div>
+
+  <div class="faq-grid">
+    <div class="faq-img-wrap">
+      <img src="{{ url_for('static', filename='images/why_us.png') }}" alt="Expert Technician" />
+      <div class="banner-swirl-extra s1" style="opacity: 0.4;"></div>
+    </div>
+    <div class="faq-content">
+      <div class="faq-list">
+        <!-- Q1 -->
+        <div class="faq-item active">
+          <div class="faq-question">
+            <span>Do you offer same-day service?</span>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-answer">
+            Yes! In most cases, we dispatch a technician within 2 to 4 hours of your booking. We prioritize critical breakdowns to ensure your home stays cool and comfortable.
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Which appliance brands do you repair?</span>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-answer">
+            We are trained to service all major brands including LG, Samsung, Daikin, Mitsubishi, Voltas, Hitachi, and more. From local brands to premium inverter systems, we fix them all.
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Is there a warranty on the repairs?</span>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-answer">
+            Absolutely. Every repair done by Air Cool Tech comes with a standard 30-day service warranty. Additionally, any new spare parts installed carry their respective manufacturer warranties.
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Are the spare parts genuine?</span>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-answer">
+            We only use 100% genuine and original spare parts sourced directly from manufacturers or authorized vendors to ensure the longevity of your appliances.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA SECTION
+============================================================ -->
+<section class="cta-section">
+  <div class="banner-swirl-extra s1" style="opacity: 0.2; left: -50px; top: -50px; border-color: white;"></div>
+  <div class="banner-swirl-extra s2" style="opacity: 0.15; right: -30px; bottom: -30px; border-color: white;"></div>
+  
+  <div class="section-center" style="max-width: 800px; margin: 0 auto;">
+    <h2 class="section-heading">Ready to Experience <span>Premium Service?</span></h2>
+    <p class="section-sub" style="font-size: 1.1rem;">Don't let a broken appliance ruin your day. Join 12,000+ happy customers and book your expert technician in under 60 seconds.</p>
+    
+    <div class="cta-btns">
+      <a href="{{ url_for('contact') }}" class="btn-cta btn-cta-primary">
+        <span>⚡ Book Your Repair</span>
+      </a>
+      <a href="tel:+91XXXXXXXXXX" class="btn-cta btn-cta-outline">
+        <span>📞 Call +91 00000 00000</span>
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // ── Expertise Carousel Infinite Loop ──
+  (function () {
+    const carousel = document.getElementById('expertiseCarousel');
+    const dotsContainer = document.getElementById('expertiseDots');
+    if (!carousel) return;
+
+    // Only activate on mobile
+    function isMobile() { return window.innerWidth <= 860; }
+    if (!isMobile()) return;
+
+    // Build dots
+    const origCards = Array.from(carousel.children);
+    const totalOrig = origCards.length;
+    
+    if (dotsContainer) {
+      origCards.forEach((_, idx) => {
+        const d = document.createElement('div');
+        d.className = 'dot' + (idx === 0 ? ' active' : '');
+        dotsContainer.appendChild(d);
+      });
+    }
+
+    // Clone all original cards and append them
+    origCards.forEach(function (card) {
+      carousel.appendChild(card.cloneNode(true));
+    });
+
+    let isResetting = false;
+
+    carousel.addEventListener('scroll', function () {
+      if (isResetting) return;
+
+      // Width of one card + gap
+      const firstCard = carousel.querySelector('.expertise-card');
+      if (!firstCard) return;
+      const cardW = firstCard.offsetWidth;
+      const gap = 12;
+      const slideUnit = cardW + gap;
+
+      // When we've scrolled past all original cards, loop back
+      const loopPoint = slideUnit * totalOrig;
+      if (carousel.scrollLeft >= loopPoint) {
+        isResetting = true;
+        carousel.scrollLeft -= loopPoint;
+        isResetting = false;
+      }
+      // If somehow scrolled before start (edge case)
+      if (carousel.scrollLeft < 0) {
+        isResetting = true;
+        carousel.scrollLeft += loopPoint;
+        isResetting = false;
+      }
+      
+      // Update dots
+      if (dotsContainer) {
+        let currentIndex = Math.round(carousel.scrollLeft / slideUnit);
+        let actualIndex = currentIndex % totalOrig;
+        if (actualIndex < 0) actualIndex = 0;
+        
+        const dots = Array.from(dotsContainer.children);
+        dots.forEach((d, idx) => {
+          d.className = 'dot' + (idx === actualIndex ? ' active' : '');
+        });
+      }
+    });
+  })();
+
+  // ── Reviews Carousel Seamless Loop & Auto-Swipe (All Screens) ──
+  (function() {
+    const grid = document.getElementById('reviewsCarousel');
+    const dotsContainer = document.getElementById('reviewsDots');
+    if (!grid) return;
+
+    const isDesktop = () => window.innerWidth > 860;
+    const origCards = Array.from(grid.children);
+    const totalOrig = origCards.length;
+
+    // Dots
+    if (dotsContainer) {
+      origCards.forEach((_, idx) => {
+        const d = document.createElement('div');
+        d.className = 'dot' + (idx === 0 ? ' active' : '');
+        dotsContainer.appendChild(d);
+      });
+    }
+
+    // Seamless loop: Clone all original cards and append
+    origCards.forEach(card => {
+      grid.appendChild(card.cloneNode(true));
+    });
+
+    let isResetting = false;
+    let autoInterval = null;
+
+    const handleScroll = () => {
+      if (isResetting) return;
+
+      const firstCard = grid.querySelector('.review-card');
+      if (!firstCard) return;
+      const cardWidth = firstCard.offsetWidth + 24; // Card + gap
+      const loopPoint = cardWidth * totalOrig;
+
+      if (grid.scrollLeft >= loopPoint) {
+        isResetting = true;
+        grid.scrollLeft -= loopPoint;
+        isResetting = false;
+      } else if (grid.scrollLeft < 0) {
+        isResetting = true;
+        grid.scrollLeft += loopPoint;
+        isResetting = false;
+      }
+
+      // Update dots
+      if (dotsContainer) {
+        let actualIdx = Math.round(grid.scrollLeft / cardWidth) % totalOrig;
+        if (actualIdx < 0) actualIdx = 0;
+        const dots = Array.from(dotsContainer.children);
+        dots.forEach((d, idx) => d.className = 'dot' + (idx === actualIdx ? ' active' : ''));
+      }
+    };
+
+    grid.addEventListener('scroll', handleScroll);
+
+    function startAutoSwipe() {
+      if (!isDesktop()) return;
+      autoInterval = setInterval(() => {
+        const firstCard = grid.querySelector('.review-card');
+        if (!firstCard) return;
+        const cardWidth = firstCard.offsetWidth + 24;
+        grid.scrollBy({ left: cardWidth, behavior: 'smooth' });
+      }, 3000); 
+    }
+
+    function stopAutoSwipe() {
+      if (autoInterval) clearInterval(autoInterval);
+    }
+
+    startAutoSwipe();
+    grid.addEventListener('mouseenter', stopAutoSwipe);
+    grid.addEventListener('mouseleave', startAutoSwipe);
+  })();
+
+  // ── FAQ Accordion Logic ──
+  (function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      question.addEventListener('click', () => {
+        // Close others
+        faqItems.forEach(other => {
+          if (other !== item) other.classList.remove('active');
+        });
+        // Toggle current
+        item.classList.toggle('active');
+      });
+    });
+  })();
+</script>
 {% endblock %}

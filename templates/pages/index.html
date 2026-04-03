@@ -313,7 +313,9 @@
 
   <div class="symp-grid">
     <a href="{{ url_for('contact') }}?issue=warm_air" class="symp-card">
-      <div class="symp-icon">🌡️</div>
+      <div class="symp-icon">
+        <img src="{{ url_for('static', filename='images/symptoms/warm_air.jpeg') }}" alt="Warm Air" />
+      </div>
       <div class="symp-content">
         <h3>Blowing Warm Air?</h3>
         <p>This usually indicates gas leakage or a compressor issue. We'll fix it fast.</p>
@@ -322,7 +324,9 @@
     </a>
 
     <a href="{{ url_for('contact') }}?issue=noise" class="symp-card">
-      <div class="symp-icon">🔊</div>
+      <div class="symp-icon">
+        <img src="{{ url_for('static', filename='images/symptoms/loud_noise.jpeg') }}" alt="Loud Noise" />
+      </div>
       <div class="symp-content">
         <h3>Making Loud Noise?</h3>
         <p>Grinding or rattling? It's likely the fan motor or a loose component.</p>
@@ -331,7 +335,9 @@
     </a>
 
     <a href="{{ url_for('contact') }}?issue=leaking" class="symp-card">
-      <div class="symp-icon">💧</div>
+      <div class="symp-icon">
+        <img src="{{ url_for('static', filename='images/symptoms/water_leaking.png') }}" alt="Water Leaking" />
+      </div>
       <div class="symp-content">
         <h3>Water Leaking?</h3>
         <p>Clogged drainage or ice formation. Our deep cleaning settles this.</p>
@@ -340,7 +346,9 @@
     </a>
 
     <a href="{{ url_for('contact') }}?issue=smell" class="symp-card">
-      <div class="symp-icon">👃</div>
+      <div class="symp-icon">
+        <img src="{{ url_for('static', filename='images/symptoms/bad_smell.jpeg') }}" alt="Bad Smell" />
+      </div>
       <div class="symp-content">
         <h3>Bad Smell?</h3>
         <p>Mould or bacterial growth in vents. Needs professional sanitization.</p>
@@ -429,11 +437,11 @@
         <img src="{{ url_for('static', filename='images/why_us.png') }}" alt="Why Us" class="whyus-img" />
         <div class="whyus-stats">
           <div class="whyus-stat">
-            <span>8M+</span>
+            <span>18k+</span>
             <div class="whyus-stat-label">Completed Projects</div>
           </div>
           <div class="whyus-stat">
-            <span>4M+</span>
+            <span>12k+</span>
             <div class="whyus-stat-label">Happy Customers</div>
           </div>
         </div>
