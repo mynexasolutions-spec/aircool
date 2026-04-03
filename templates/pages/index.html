@@ -81,9 +81,8 @@
   <h2 class="section-heading">Find Us In Your <span>City</span></h2>
   <p class="section-sub">Fast and reliable repair services now available across three major Indian cities.</p>
   <div class="cities-grid">
-    <div class="city-card">
-      <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&auto=format&fit=crop"
-        alt="Bangalore" />
+    <div class="city-card bangalore-card">
+      <img src="{{ url_for('static', filename='images/bangalore.png') }}" alt="Bangalore" />
       <div class="city-overlay"></div>
       <div class="city-info">
         <div class="city-name">Bangalore</div>
@@ -126,7 +125,7 @@
         <div class="service-name">AC Repair</div>
         <div class="service-desc">Split, Window &amp; Inverter AC service</div>
         <div class="service-actions">
-          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('ac_repair') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
       </div>
@@ -141,7 +140,7 @@
         <div class="service-name">Cassette AC</div>
         <div class="service-desc">Ceiling cassette AC installation &amp; service</div>
         <div class="service-actions">
-          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('cassette_ac') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
       </div>
@@ -156,7 +155,7 @@
         <div class="service-name">VRF / VRV AC</div>
         <div class="service-desc">Commercial VRF/VRV system repair</div>
         <div class="service-actions">
-          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('vrf_ac') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
       </div>
@@ -171,7 +170,7 @@
         <div class="service-name">Fridge Repair</div>
         <div class="service-desc">All refrigerator brands &amp; models</div>
         <div class="service-actions">
-          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('fridge_repair') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
       </div>
@@ -186,7 +185,7 @@
         <div class="service-name">Washing Machine</div>
         <div class="service-desc">Front &amp; top load repair, all brands</div>
         <div class="service-actions">
-          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('washing_machine') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
       </div>
@@ -201,10 +200,12 @@
         <div class="service-name">Geyser Repair</div>
         <div class="service-desc">Electric &amp; gas water heater service</div>
         <div class="service-actions">
-          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('geyser_repair') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
       </div>
+    </div>
+
     </div>
 
   </div>
@@ -298,7 +299,7 @@
     <!-- O General -->
     <div class="brand-card">
       <div class="brand-logo-wrap">
-        <img src="{{ url_for('static', filename='images/brands/o general.jpg') }}" alt="O General" />
+        <img src="{{ url_for('static', filename='images/brands/o_general.jpg') }}" alt="O General" />
       </div>
     </div>
 

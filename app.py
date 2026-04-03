@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template
 
 app = Flask(__name__)
 app.secret_key = 'aircool-dev-key-change-in-production'
@@ -24,12 +24,38 @@ def about():
     return render_template('pages/about.html')
 
 
-@app.route('/contact', methods=['GET', 'POST'])
+@app.route('/ac-repair')
+def ac_repair():
+    return render_template('pages/ac_repair.html')
+
+
+@app.route('/cassette-ac')
+def cassette_ac():
+    return render_template('pages/cassette_ac.html')
+
+
+@app.route('/vrf-ac')
+def vrf_ac():
+    return render_template('pages/vrf_ac.html')
+
+
+@app.route('/fridge-repair')
+def fridge_repair():
+    return render_template('pages/fridge_repair.html')
+
+
+@app.route('/washing-machine')
+def washing_machine():
+    return render_template('pages/washing_machine.html')
+
+
+@app.route('/geyser-repair')
+def geyser_repair():
+    return render_template('pages/geyser_repair.html')
+
+
+@app.route('/contact')
 def contact():
-    if request.method == 'POST':
-        # In production: send email / save to DB here
-        flash('Thank you! We will call you back within the hour.', 'success')
-        return redirect(url_for('contact'))
     return render_template('pages/contact.html')
 
 

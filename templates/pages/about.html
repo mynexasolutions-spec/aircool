@@ -583,7 +583,7 @@
           <span class="expertise-tag">Gas Refill</span>
         </div>
         <div class="service-actions">
-          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('ac_repair') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
       </div>
@@ -603,7 +603,7 @@
           <span class="expertise-tag">All Brands</span>
         </div>
         <div class="service-actions">
-          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('fridge_repair') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
       </div>
@@ -623,7 +623,7 @@
           <span class="expertise-tag">Top Load</span>
         </div>
         <div class="service-actions">
-          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('washing_machine') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
       </div>
@@ -643,50 +643,52 @@
           <span class="expertise-tag">Gas</span>
         </div>
         <div class="service-actions">
-          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('geyser_repair') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
       </div>
     </div>
 
-    <!-- Microwave -->
+    <!-- Cassette AC -->
     <div class="expertise-card">
       <div class="expertise-img">
-        <img src="{{ url_for('static', filename='images/cassate_ac.png') }}" alt="Microwave Repair" />
-      </div>
-      <div class="expertise-info-wrap">
-        <span class="expertise-tag">Kitchen</span>
-        <h3 class="expertise-title">Microwave Repair</h3>
-        <p class="expertise-desc">Magnetron, turntable motor, door switch, capacitor and control board repairs.</p>
-        <div class="expertise-tags">
-          <span class="expertise-tag">Solo</span>
-          <span class="expertise-tag">Convection</span>
-        </div>
-        <div class="service-actions">
-          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
-          <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- AMC Plans -->
-    <div class="expertise-card">
-      <div class="expertise-img">
-        <img src="{{ url_for('static', filename='images/VRB_AC.png') }}" alt="AMC Plans" />
+        <img src="{{ url_for('static', filename='images/cassate_ac.png') }}" alt="Cassette AC" />
       </div>
       <div class="expertise-info-wrap">
         <span class="expertise-tag">Commercial</span>
-        <h3 class="expertise-title">AMC Plans</h3>
-        <p class="expertise-desc">Annual Maintenance Contracts with priority booking &amp; discounted repair rates.</p>
+        <h3 class="expertise-title">Cassette AC</h3>
+        <p class="expertise-desc">Ceiling cassette installations, deep cleaning servicing, and commercial PCB/compressor repairs.</p>
         <div class="expertise-tags">
-          <span class="expertise-tag">Annual</span>
-          <span class="expertise-tag">Priority</span>
+          <span class="expertise-tag">Ceiling</span>
+          <span class="expertise-tag">Service</span>
         </div>
         <div class="service-actions">
-          <a href="{{ url_for('services') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('cassette_ac') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
       </div>
+    </div>
+
+    <!-- VRF AC -->
+    <div class="expertise-card">
+      <div class="expertise-img">
+        <img src="{{ url_for('static', filename='images/VRB_AC.png') }}" alt="VRF VRV AC" />
+      </div>
+      <div class="expertise-info-wrap">
+        <span class="expertise-tag">Commercial</span>
+        <h3 class="expertise-title">VRF / VRV Systems</h3>
+        <p class="expertise-desc">Variable Refrigerant Flow (VRF) design, commissioning and high-pressure system maintenance.</p>
+        <div class="expertise-tags">
+          <span class="expertise-tag">Industrial</span>
+          <span class="expertise-tag">System Design</span>
+        </div>
+        <div class="service-actions">
+          <a href="{{ url_for('vrf_ac') }}" class="service-btn service-btn-ghost">Know More</a>
+          <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
+        </div>
+      </div>
+    </div>
+
     </div>
 
   </div>

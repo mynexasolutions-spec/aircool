@@ -1,0 +1,377 @@
+{% extends 'base.html' %}
+
+{% block title %}AC Repair & Services — Installation, Gas Refill & More{% endblock %}
+
+{% block extra_css %}
+<style>
+  /* ============================================================
+     BANNER (REUSED FROM ABOUT)
+  ============================================================ */
+  .service-banner {
+    background: var(--blue);
+    position: relative;
+    overflow: hidden;
+    padding: 80px 5% 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+  }
+  .service-banner::before,
+  .service-banner::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.25);
+    pointer-events: none;
+  }
+  .service-banner::before { width: 300px; height: 300px; left: -100px; bottom: -120px; }
+  .service-banner::after  { width: 220px; height: 220px; right: -70px; top: -90px; }
+
+  .banner-swirl-extra {
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.18);
+    pointer-events: none;
+  }
+  .banner-swirl-extra.s1 { width: 160px; height: 160px; right: 80px; bottom: -60px; }
+  .banner-swirl-extra.s2 { width: 120px; height: 120px; left: 140px; top: -50px; }
+
+  .banner-text { text-align: center; position: relative; z-index: 2; }
+  .banner-text h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    font-weight: 900;
+    color: white;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+  }
+
+  /* LOCATION TAGS IN BANNER */
+  .banner-locations {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  .loc-tag {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .loc-tag::before { content: '📍'; font-size: 0.8rem; }
+
+  .banner-breadcrumb { font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 12px; }
+  .banner-breadcrumb a { color: rgba(255,255,255,0.85); text-decoration: none; }
+  .banner-breadcrumb span { margin: 0 6px; }
+
+  /* ============================================================
+     SPECIFIC SERVICES SECTIONS
+  ============================================================ */
+  .repair-section { padding: 60px 5%; background: var(--white); }
+  .repair-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; max-width: 1200px; margin: 0 auto; }
+  
+  .repair-image-box { border-radius: 30px; overflow: hidden; height: 450px; box-shadow: var(--shadow-hover); position: relative; }
+  .repair-image-box img { width: 100%; height: 100%; object-fit: cover; }
+  
+  .repair-content h2 { font-size: 2.2rem; margin-bottom: 24px; font-weight: 900; color: var(--dark); }
+  .repair-content h2 span { color: var(--blue); }
+  .repair-content p { color: var(--gray-text); line-height: 1.7; margin-bottom: 30px; font-size: 1.05rem; }
+  
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 15px; margin-bottom: 40px; }
+  .feature-item { display: flex; align-items: flex-start; gap: 14px; font-weight: 600; color: var(--dark-blue); font-size: 0.95rem; }
+  .feature-item i { 
+    width: 22px; height: 22px; min-width: 22px; 
+    background: var(--blue); border-radius: 50%; 
+    color: white; display: flex; align-items: center; justify-content: center; 
+    font-size: 0.8rem; font-style: normal; box-shadow: 0 4px 8px rgba(58, 155, 213, 0.2); 
+  }
+  .feature-item i::after { content: '✓'; font-weight: 900; }
+
+  /* ALTERNATING BG */
+  .bg-alt { background: #fcfdfe; }
+  
+  .repair-actions { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 40px; }
+
+  @media (max-width: 1024px) {
+    .repair-grid { grid-template-columns: 1fr; gap: 30px; }
+    .repair-image-box { height: 320px; }
+    /* Removed alternating order to ensure consistent image->text flow on mobile */
+  }
+
+  @media (max-width: 480px) {
+    .repair-content h2 { font-size: 1.7rem; text-align: center; }
+    .loc-tag { font-size: 0.75rem; padding: 5px 12px; }
+    .repair-content .section-label { margin: 0 auto 12px; font-size: 0.72rem; }
+    .repair-content .section-sub, .repair-content p { text-align: center; font-size: 0.88rem; line-height: 1.6; }
+    .repair-actions { justify-content: center; margin-top: 30px; }
+    
+    .feature-list { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      gap: 15px 10px; 
+      margin-bottom: 30px; 
+      text-align: left;
+    }
+    .feature-item { font-size: 0.75rem; gap: 8px; line-height: 1.3; }
+    .feature-item i { width: 17px; height: 17px; min-width: 17px; font-size: 0.6rem; }
+  }
+
+  /* DESKTOP ONLY ALTERNATING */
+  @media (min-width: 1025px) {
+    .repair-section:nth-of-type(even) .repair-grid .repair-image-box { order: 2; }
+    .repair-section:nth-of-type(even) .repair-grid .repair-content { order: 1; }
+  }
+
+  /* HIGHLIGHT CARDS */
+  .highlight-section { padding: 40px 5% 0; background: var(--white); }
+  .highlight-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 15px; 
+    max-width: 1100px; 
+    margin: 0 auto; 
+  }
+  .highlight-card { 
+    text-align: center; 
+    background: #f8fbfe; 
+    padding: 15px 10px; 
+    border-radius: 18px; 
+    text-decoration: none;
+    transition: transform 0.3s;
+    border: 1px solid #eef5fa;
+  }
+  .highlight-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; margin-bottom: 12px; }
+  .highlight-card h4 { font-size: 1.05rem; font-weight: 800; color: var(--dark); margin-bottom: 18px; line-height: 1.3; height: 50px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  
+  .highlight-actions { display: flex; flex-direction: column; gap: 8px; }
+  .h-btn { font-size: 0.8rem; font-weight: 700; padding: 10px 5px; border-radius: 10px; text-decoration: none; display: block; border: 1.5px solid transparent; }
+  .h-btn-primary { background: var(--blue); color: white; }
+  .h-btn-outline { border-color: var(--blue); color: var(--blue); }
+
+  @media (max-width: 480px) {
+    .highlight-grid { gap: 8px; }
+    .highlight-card { padding: 8px 5px; border-radius: 12px; }
+    .highlight-card h4 { font-size: 0.55rem; height: 28px; margin-bottom: 8px; }
+    .highlight-actions { gap: 4px; }
+    .h-btn { font-size: 0.5rem; padding: 5px 2px; border-radius: 4px; border-width: 1px; }
+  }
+
+  @media (max-width: 480px) {
+    .highlight-grid { gap: 8px; }
+    .highlight-card { padding: 10px 5px; border-radius: 12px; }
+    .highlight-card h4 { font-size: 0.65rem; }
+  }
+
+  /* ============================================================
+     CTA SECTION (MATCHING ABOUT PAGE)
+  ============================================================ */
+  .cta-section { background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%); padding: 80px 5%; text-align: center; color: white; position: relative; overflow: hidden; }
+  .cta-section .section-heading { color: white; margin-bottom: 20px; }
+  .cta-section .section-heading span { color: var(--blue-pale); }
+  .cta-section .section-sub { color: rgba(255,255,255,0.85); margin-bottom: 40px; }
+  
+  .cta-btns { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+  .btn-cta { 
+    padding: 16px 36px; 
+    border-radius: 50px; 
+    font-weight: 700; 
+    font-size: 1.05rem; 
+    text-decoration: none; 
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-cta-primary { background: white; color: var(--blue); }
+  .btn-cta-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+  .btn-cta-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.4); }
+  .btn-cta-outline:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-3px); }
+
+  @media (max-width: 600px) {
+    .cta-section { padding: 60px 5%; }
+    .btn-cta { width: 100%; justify-content: center; padding: 14px 24px; font-size: 0.95rem; }
+    .cta-btns { gap: 12px; }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ============================================================
+     BANNER (DYNAMIC & BRANDED)
+============================================================ -->
+<section class="service-banner">
+  <div class="banner-swirl-extra s1" style="opacity: 0.2;"></div>
+  <div class="banner-swirl-extra s2" style="opacity: 0.15;"></div>
+  
+  <div class="banner-text">
+    <div class="banner-breadcrumb">
+      <a href="{{ url_for('index') }}">Home</a>
+      <span>/</span>
+      <a href="{{ url_for('services') }}">Services</a>
+      <span>/</span>
+      <span style="color: white; font-weight: 800;">AC Repair</span>
+    </div>
+    <h1>Expert AC <span>Repair &amp; Service</span></h1>
+    
+    <!-- LOCATION TAGS REQUESTED BY USER -->
+    <div class="banner-locations">
+      <div class="loc-tag">Bangalore</div>
+      <div class="loc-tag">Jaipur</div>
+      <div class="loc-tag">Delhi</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SERVICE HIGHLIGHT CARDS (REQUESTED)
+============================================================ -->
+<section class="highlight-section">
+  <div class="highlight-grid">
+    <div class="highlight-card">
+      <img src="{{ url_for('static', filename='images/ac_installation.png') }}" alt="Installation" />
+      <h4>Split &amp; Window AC Installation</h4>
+      <div class="highlight-actions">
+        <a href="{{ url_for('contact') }}" class="h-btn h-btn-primary">Book Now</a>
+        <a href="tel:+91XXXXXXXXXX" class="h-btn h-btn-outline">Call Now</a>
+      </div>
+    </div>
+    <div class="highlight-card">
+      <img src="{{ url_for('static', filename='images/ac_repair.jpg') }}" alt="Uninstallation" />
+      <h4>Safe &amp; Stress-free Uninstallation</h4>
+      <div class="highlight-actions">
+        <a href="{{ url_for('contact') }}" class="h-btn h-btn-primary">Book Now</a>
+        <a href="tel:+91XXXXXXXXXX" class="h-btn h-btn-outline">Call Now</a>
+      </div>
+    </div>
+    <div class="highlight-card">
+      <img src="{{ url_for('static', filename='images/gas_refill.png') }}" alt="Gas Refill" />
+      <h4>Eco-Friendly AC Gas Refill</h4>
+      <div class="highlight-actions">
+        <a href="{{ url_for('contact') }}" class="h-btn h-btn-primary">Book Now</a>
+        <a href="tel:+91XXXXXXXXXX" class="h-btn h-btn-outline">Call Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============================================================
+     INSTALLATION SECTION
+============================================================ -->
+<section class="repair-section" id="installation">
+  <div class="repair-grid">
+    <div class="repair-image-box">
+      <img src="{{ url_for('static', filename='images/ac_installation.png') }}" alt="AC Installation" style="object-position: top center;" />
+      <div style="position: absolute; top: 20px; right: 20px; z-index: 10;">
+        <span class="slide-image-badge" style="background:#22c55e;">Professional Setup</span>
+      </div>
+    </div>
+    <div class="repair-content">
+      <div class="section-label">🛠️ Quality Setup</div>
+      <h2>Split &amp; Window <span>AC Installation</span></h2>
+      <p>Whether it's a new machine or you're shifting homes, our technicians ensure a perfect, leak-proof installation with precision vacuuming and alignment.</p>
+      
+      <ul class="feature-list">
+        <li class="feature-item"><i></i> Precision drilling for wall safety</li>
+        <li class="feature-item"><i></i> Extra-long pipe routing support</li>
+        <li class="feature-item"><i></i> Leak-proof vacuum testing</li>
+        <li class="feature-item"><i></i> Site cleanup included</li>
+      </ul>
+
+      <div class="repair-actions">
+        <a href="{{ url_for('contact') }}" class="btn-primary" style="padding: 14px 32px; border-radius: 50px;">Book Installation</a>
+        <a href="tel:+91XXXXXXXXXX" class="btn-outline" style="padding: 14px 32px; border-radius: 50px; border-color: var(--blue); color: var(--blue);">📞 Call Us Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     UNINSTALLATION SECTION
+============================================================ -->
+<section class="repair-section bg-alt" id="uninstallation">
+  <div class="repair-grid">
+    <div class="repair-image-box">
+      <img src="{{ url_for('static', filename='images/ac_repair.jpg') }}" alt="AC Uninstallation" />
+    </div>
+    <div class="repair-content">
+      <div class="section-label">📦 Safe Removal</div>
+      <h2>Safe &amp; Stress-free <span>Uninstallation</span></h2>
+      <p>Moving out? We handle the delicate task of gas-pumping and removing your AC units without losing refrigerant or damaging the coils.</p>
+      
+      <ul class="feature-list">
+        <li class="feature-item"><i></i> Gas pumping into compressor</li>
+        <li class="feature-item"><i></i> Safe pipe removal &amp; clipping</li>
+        <li class="feature-item"><i></i> Moving &amp; packing assistance</li>
+        <li class="feature-item"><i></i> Height-accessible specialists</li>
+      </ul>
+
+      <div class="repair-actions">
+        <a href="{{ url_for('contact') }}" class="btn-primary" style="padding: 14px 32px; border-radius: 50px;">Request Removal</a>
+        <a href="tel:+91XXXXXXXXXX" class="btn-outline" style="padding: 14px 32px; border-radius: 50px; border-color: var(--blue); color: var(--blue);">📞 Call Us Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GAS REFILL SECTION
+============================================================ -->
+<section class="repair-section" id="gas-refill">
+  <div class="repair-grid">
+    <div class="repair-image-box">
+      <img src="{{ url_for('static', filename='images/gas_refill.png') }}" alt="AC Gas Refill" />
+    </div>
+    <div class="repair-content">
+      <div class="section-label">❄️ Restore Cooling</div>
+      <h2>Eco-Friendly <span>AC Gas Refill</span></h2>
+      <p>Is your AC blowing warm air? It might need a gas top-up or refill. We use only high-purity R32, R410A, and R22 gases for maximum cooling efficiency.</p>
+      
+      <ul class="feature-list">
+        <li class="feature-item"><i></i> Full vacuuming before refill</li>
+        <li class="feature-item"><i></i> Free leak detection check</li>
+        <li class="feature-item"><i></i> Safety pressure testing</li>
+        <li class="feature-item"><i></i> Detailed performance report</li>
+      </ul>
+
+      <div class="repair-actions">
+        <a href="{{ url_for('contact') }}" class="btn-primary" style="padding: 14px 32px; border-radius: 50px;">Book Gas Refill</a>
+        <a href="tel:+91XXXXXXXXXX" class="btn-outline" style="padding: 14px 32px; border-radius: 50px; border-color: var(--blue); color: var(--blue);">📞 Call Us Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA SECTION
+============================================================ -->
+<section class="cta-section">
+  <div class="banner-swirl-extra s1" style="opacity: 0.2; left: -50px; top: -50px; border-color: white;"></div>
+  <div class="banner-swirl-extra s2" style="opacity: 0.15; right: -30px; bottom: -30px; border-color: white;"></div>
+  
+  <div class="section-center" style="max-width: 800px; margin: 0 auto;">
+    <h2 class="section-heading">Ready to Experience <span>Premium Service?</span></h2>
+    <p class="section-sub" style="font-size: 1.1rem;">Don't let a broken appliance ruin your day. Join 12,000+ happy customers and book your expert technician in under 60 seconds.</p>
+    
+    <div class="cta-btns">
+      <a href="{{ url_for('contact') }}" class="btn-cta btn-cta-primary">
+        <span>⚡ Book Your Repair</span>
+      </a>
+      <a href="tel:+91XXXXXXXXXX" class="btn-cta btn-cta-outline">
+        <span>📞 Call +91 00000 00000</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -4,8 +4,53 @@
   </a>
   <ul class="nav-links">
     <li><a href="{{ url_for('index') }}" {% if request.endpoint == 'index' %}class="active"{% endif %}>Home</a></li>
-    <li><a href="{{ url_for('services') }}" {% if request.endpoint == 'services' %}class="active"{% endif %}>Services</a></li>
-    <li><a href="{{ url_for('cities') }}" {% if request.endpoint == 'cities' %}class="active"{% endif %}>Cities</a></li>
+    <li class="dropdown">
+      <a href="{{ url_for('services') }}" {% if request.endpoint == 'services' %}class="active"{% endif %}>Services</a>
+      <div class="dropdown-menu">
+        <a href="{{ url_for('ac_repair') }}" class="dropdown-item">
+          <img src="{{ url_for('static', filename='images/ac_repair.jpg') }}" class="dropdown-img" />
+          <div class="dropdown-info">
+            <span class="dropdown-name">AC Repair & Service</span>
+            <span class="dropdown-tag">Split & Window</span>
+          </div>
+        </a>
+        <a href="{{ url_for('cassette_ac') }}" class="dropdown-item">
+          <img src="{{ url_for('static', filename='images/cassate_ac.png') }}" class="dropdown-img" />
+          <div class="dropdown-info">
+            <span class="dropdown-name">Cassette AC</span>
+            <span class="dropdown-tag">Commercial</span>
+          </div>
+        </a>
+        <a href="{{ url_for('vrf_ac') }}" class="dropdown-item">
+          <img src="{{ url_for('static', filename='images/VRB_AC.png') }}" class="dropdown-img" />
+          <div class="dropdown-info">
+            <span class="dropdown-name">VRF / VRV System</span>
+            <span class="dropdown-tag">Industrial Cooling</span>
+          </div>
+        </a>
+        <a href="{{ url_for('fridge_repair') }}" class="dropdown-item">
+          <img src="{{ url_for('static', filename='images/fridge_repair.jpg') }}" class="dropdown-img" />
+          <div class="dropdown-info">
+            <span class="dropdown-name">Fridge Repair</span>
+            <span class="dropdown-tag">All Brands</span>
+          </div>
+        </a>
+        <a href="{{ url_for('washing_machine') }}" class="dropdown-item">
+          <img src="{{ url_for('static', filename='images/washing_machine.png') }}" class="dropdown-img" />
+          <div class="dropdown-info">
+            <span class="dropdown-name">Washing Machine</span>
+            <span class="dropdown-tag">Premium Care</span>
+          </div>
+        </a>
+        <a href="{{ url_for('geyser_repair') }}" class="dropdown-item">
+          <img src="{{ url_for('static', filename='images/geyser.png') }}" class="dropdown-img" />
+          <div class="dropdown-info">
+            <span class="dropdown-name">Geyser Repair</span>
+            <span class="dropdown-tag">Electric & Gas</span>
+          </div>
+        </a>
+      </div>
+    </li>
     <li><a href="{{ url_for('about') }}" {% if request.endpoint == 'about' %}class="active"{% endif %}>About</a></li>
     <li><a href="{{ url_for('contact') }}" {% if request.endpoint == 'contact' %}class="active"{% endif %}>Contact</a></li>
   </ul>
