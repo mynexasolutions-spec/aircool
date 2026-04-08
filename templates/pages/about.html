@@ -569,7 +569,7 @@
   <div class="expertise-grid" id="expertiseCarousel">
 
     <!-- AC Repair -->
-    <div class="expertise-card">
+    <div class="expertise-card" onclick="window.location.href='{{ url_for('ac_repair') }}';">
       <div class="expertise-img">
         <img src="{{ url_for('static', filename='images/ac_repair.jpg') }}" alt="AC Repair" />
       </div>
@@ -582,7 +582,7 @@
           <span class="expertise-tag">Cassette</span>
           <span class="expertise-tag">Gas Refill</span>
         </div>
-        <div class="service-actions">
+        <div class="service-actions" onclick="event.stopPropagation();">
           <a href="{{ url_for('ac_repair') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
@@ -590,7 +590,7 @@
     </div>
 
     <!-- Fridge -->
-    <div class="expertise-card">
+    <div class="expertise-card" onclick="window.location.href='{{ url_for('fridge_repair') }}';">
       <div class="expertise-img">
         <img src="{{ url_for('static', filename='images/fridge_repair.jpg') }}" alt="Refrigerator Repair" />
       </div>
@@ -602,7 +602,7 @@
           <span class="expertise-tag">Compressor</span>
           <span class="expertise-tag">All Brands</span>
         </div>
-        <div class="service-actions">
+        <div class="service-actions" onclick="event.stopPropagation();">
           <a href="{{ url_for('fridge_repair') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
@@ -610,7 +610,7 @@
     </div>
 
     <!-- Washing Machine -->
-    <div class="expertise-card">
+    <div class="expertise-card" onclick="window.location.href='{{ url_for('washing_machine') }}';">
       <div class="expertise-img">
         <img src="{{ url_for('static', filename='images/washing_machine.png') }}" alt="Washing Machine Repair" />
       </div>
@@ -622,7 +622,7 @@
           <span class="expertise-tag">Front Load</span>
           <span class="expertise-tag">Top Load</span>
         </div>
-        <div class="service-actions">
+        <div class="service-actions" onclick="event.stopPropagation();">
           <a href="{{ url_for('washing_machine') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
@@ -630,7 +630,7 @@
     </div>
 
     <!-- Geyser -->
-    <div class="expertise-card">
+    <div class="expertise-card" onclick="window.location.href='{{ url_for('geyser_repair') }}';">
       <div class="expertise-img">
         <img src="{{ url_for('static', filename='images/geyser.png') }}" alt="Geyser Repair" />
       </div>
@@ -642,7 +642,7 @@
           <span class="expertise-tag">Electric</span>
           <span class="expertise-tag">Gas</span>
         </div>
-        <div class="service-actions">
+        <div class="service-actions" onclick="event.stopPropagation();">
           <a href="{{ url_for('geyser_repair') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
@@ -650,7 +650,7 @@
     </div>
 
     <!-- Cassette AC -->
-    <div class="expertise-card">
+    <div class="expertise-card" onclick="window.location.href='{{ url_for('cassette_ac') }}';">
       <div class="expertise-img">
         <img src="{{ url_for('static', filename='images/cassate_ac.png') }}" alt="Cassette AC" />
       </div>
@@ -662,7 +662,7 @@
           <span class="expertise-tag">Ceiling</span>
           <span class="expertise-tag">Service</span>
         </div>
-        <div class="service-actions">
+        <div class="service-actions" onclick="event.stopPropagation();">
           <a href="{{ url_for('cassette_ac') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
@@ -670,9 +670,9 @@
     </div>
 
     <!-- VRF AC -->
-    <div class="expertise-card">
+    <div class="expertise-card" onclick="window.location.href='{{ url_for('vrf_ac') }}';">
       <div class="expertise-img">
-        <img src="{{ url_for('static', filename='images/VRB_AC.png') }}" alt="VRF VRV AC" />
+        <img src="{{ url_for('static', filename='images/VRV_AC.png') }}" alt="VRF VRV AC" />
       </div>
       <div class="expertise-info-wrap">
         <span class="expertise-tag">Commercial</span>
@@ -682,7 +682,7 @@
           <span class="expertise-tag">Industrial</span>
           <span class="expertise-tag">System Design</span>
         </div>
-        <div class="service-actions">
+        <div class="service-actions" onclick="event.stopPropagation();">
           <a href="{{ url_for('vrf_ac') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
@@ -712,7 +712,7 @@
     <!-- Member 1 -->
     <div class="team-card">
       <div class="team-img-wrap">
-        <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=500&auto=format&fit=crop&q=80" alt="Raj Kumar" />
+        <img src="{{ url_for('static', filename='images/team/mohd_salman.jpeg') }}" alt="Salman" />
         <div class="team-socials">
           <a class="social-icon" href="#" aria-label="Facebook">
             <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
@@ -726,15 +726,15 @@
         </div>
       </div>
       <div class="team-info">
-        <div class="team-name">Raj Kumar</div>
-        <div class="team-role">Lead AC Technician</div>
+        <div class="team-name">Salman</div>
+        <div class="team-role">Home appliances repair expert</div>
       </div>
     </div>
 
     <!-- Member 2 -->
     <div class="team-card">
       <div class="team-img-wrap">
-        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&auto=format&fit=crop&q=80" alt="Amit Sharma" />
+        <img src="{{ url_for('static', filename='images/team/refrigerator_expert.jpeg') }}" alt="Refrigerator Expert" />
         <div class="team-socials">
           <a class="social-icon" href="#" aria-label="Facebook">
             <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
@@ -748,8 +748,8 @@
         </div>
       </div>
       <div class="team-info">
-        <div class="team-name">Amit Sharma</div>
-        <div class="team-role">Refrigeration Expert</div>
+        <div class="team-name">Expert Specialist</div>
+        <div class="team-role">Refrigerator expert</div>
       </div>
     </div>
 

@@ -496,6 +496,8 @@ footer {
   gap: 24px;
 }
 .city-card {
+  display: block;
+  text-decoration: none;
   border-radius: var(--radius);
   overflow: hidden;
   position: relative;

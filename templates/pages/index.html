@@ -81,23 +81,23 @@
   <h2 class="section-heading">Find Us In Your <span>City</span></h2>
   <p class="section-sub">Fast and reliable repair services now available across three major Indian cities.</p>
   <div class="cities-grid">
-    <div class="city-card bangalore-card">
+    <a href="{{ url_for('cities') }}#bangalore" class="city-card bangalore-card">
       <img src="{{ url_for('static', filename='images/bangalore.png') }}" alt="Bangalore" />
       <div class="city-overlay"></div>
       <div class="city-info">
         <div class="city-name">Bangalore</div>
         <span class="city-tag">Available Now</span>
       </div>
-    </div>
-    <div class="city-card">
+    </a>
+    <a href="{{ url_for('cities') }}#jaipur" class="city-card">
       <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?w=600&auto=format&fit=crop" alt="Jaipur" />
       <div class="city-overlay"></div>
       <div class="city-info">
         <div class="city-name">Jaipur</div>
         <span class="city-tag">Available Now</span>
       </div>
-    </div>
-    <div class="city-card">
+    </a>
+    <a href="{{ url_for('cities') }}#rudrapur" class="city-card">
       <img src="{{ url_for('static', filename='images/rudrapur.avif') }}"
         alt="Rudrapur" />
       <div class="city-overlay"></div>
@@ -105,7 +105,7 @@
         <div class="city-name">Rudrapur</div>
         <span class="city-tag">Available Now</span>
       </div>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -116,7 +116,7 @@
   <p class="section-sub">Comprehensive repair and maintenance for all your home appliances.</p>
   <div class="services-grid">
 
-    <div class="service-card">
+    <div class="service-card" onclick="window.location.href='{{ url_for('ac_repair') }}'">
       <div class="service-img-wrap">
         <img src="{{ url_for('static', filename='images/ac_repair.jpg') }}" alt="AC Repair" />
       </div>
@@ -124,14 +124,14 @@
         <span class="service-tag">Cooling</span>
         <div class="service-name">AC Repair</div>
         <div class="service-desc">Split, Window &amp; Inverter AC service</div>
-        <div class="service-actions">
+        <div class="service-actions" onclick="event.stopPropagation()">
           <a href="{{ url_for('ac_repair') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
       </div>
     </div>
 
-    <div class="service-card">
+    <div class="service-card" onclick="window.location.href='{{ url_for('cassette_ac') }}'">
       <div class="service-img-wrap">
         <img src="{{ url_for('static', filename='images/cassate_ac.png') }}" alt="Cassette AC" />
       </div>
@@ -139,14 +139,14 @@
         <span class="service-tag">Cooling</span>
         <div class="service-name">Cassette AC</div>
         <div class="service-desc">Ceiling cassette AC installation &amp; service</div>
-        <div class="service-actions">
+        <div class="service-actions" onclick="event.stopPropagation()">
           <a href="{{ url_for('cassette_ac') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
       </div>
     </div>
 
-    <div class="service-card">
+    <div class="service-card" onclick="window.location.href='{{ url_for('vrf_ac') }}'">
       <div class="service-img-wrap">
         <img src="{{ url_for('static', filename='images/VRV_AC.png') }}" alt="VRF VRV AC" />
       </div>
@@ -154,14 +154,14 @@
         <span class="service-tag">Commercial</span>
         <div class="service-name">VRF / VRV AC</div>
         <div class="service-desc">Commercial VRF/VRV system repair</div>
-        <div class="service-actions">
+        <div class="service-actions" onclick="event.stopPropagation()">
           <a href="{{ url_for('vrf_ac') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
       </div>
     </div>
 
-    <div class="service-card">
+    <div class="service-card" onclick="window.location.href='{{ url_for('fridge_repair') }}'">
       <div class="service-img-wrap">
         <img src="{{ url_for('static', filename='images/fridge_repair.jpg') }}" alt="Fridge Repair" />
       </div>
@@ -169,14 +169,14 @@
         <span class="service-tag">Kitchen</span>
         <div class="service-name">Fridge Repair</div>
         <div class="service-desc">All refrigerator brands &amp; models</div>
-        <div class="service-actions">
+        <div class="service-actions" onclick="event.stopPropagation()">
           <a href="{{ url_for('fridge_repair') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
       </div>
     </div>
 
-    <div class="service-card">
+    <div class="service-card" onclick="window.location.href='{{ url_for('washing_machine') }}'">
       <div class="service-img-wrap">
         <img src="{{ url_for('static', filename='images/washing_machine.png') }}" alt="Washing Machine" />
       </div>
@@ -184,14 +184,14 @@
         <span class="service-tag">Laundry</span>
         <div class="service-name">Washing Machine</div>
         <div class="service-desc">Front &amp; top load repair, all brands</div>
-        <div class="service-actions">
+        <div class="service-actions" onclick="event.stopPropagation()">
           <a href="{{ url_for('washing_machine') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
       </div>
     </div>
 
-    <div class="service-card">
+    <div class="service-card" onclick="window.location.href='{{ url_for('geyser_repair') }}'">
       <div class="service-img-wrap">
         <img src="{{ url_for('static', filename='images/geyser.png') }}" alt="Geyser Repair" />
       </div>
@@ -199,7 +199,7 @@
         <span class="service-tag">Water Heating</span>
         <div class="service-name">Geyser Repair</div>
         <div class="service-desc">Electric &amp; gas water heater service</div>
-        <div class="service-actions">
+        <div class="service-actions" onclick="event.stopPropagation()">
           <a href="{{ url_for('geyser_repair') }}" class="service-btn service-btn-ghost">Know More</a>
           <a href="{{ url_for('contact') }}" class="service-btn service-btn-primary">Book Now</a>
         </div>
