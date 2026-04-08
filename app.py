@@ -54,11 +54,16 @@ def geyser_repair():
     return render_template('pages/geyser_repair.html')
 
 
+@app.route('/privacy-policy')
+def privacy_policy():
+    return render_template('pages/privacy_policy.html')
+
+
 @app.route('/contact')
 def contact():
     return render_template('pages/contact.html')
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5001, debug=True)
 

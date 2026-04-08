@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block title %}Privacy Policy — Air Cool Tech Services{% endblock %}
+
+{% block extra_css %}
+<style>
+  .legal-section {
+    padding: 80px 5%;
+    background: #fff;
+    color: var(--dark);
+  }
+  .legal-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .legal-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .legal-header h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 950;
+    color: var(--blue-dark);
+    margin-bottom: 15px;
+  }
+  .last-updated {
+    font-size: 0.9rem;
+    color: var(--gray-text);
+    font-weight: 600;
+  }
+  
+  .legal-content h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin: 40px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--blue-pale);
+  }
+  .legal-content p {
+    line-height: 1.8;
+    color: var(--gray-text);
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+  }
+  .legal-content ul {
+    margin-bottom: 25px;
+    padding-left: 20px;
+  }
+  .legal-content li {
+    margin-bottom: 12px;
+    color: var(--gray-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    list-style-type: disc;
+  }
+  
+  .disclaimer-box {
+    background: var(--blue-pale);
+    border-left: 5px solid var(--blue);
+    padding: 25px 30px;
+    border-radius: 12px;
+    margin: 50px 0;
+  }
+  .disclaimer-box h3 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--blue-dark);
+    margin-bottom: 10px;
+  }
+  .disclaimer-box p {
+    margin-bottom: 0;
+    color: var(--dark);
+    font-weight: 600;
+    font-style: italic;
+  }
+
+  @media (max-width: 768px) {
+    .legal-section { padding: 50px 5%; }
+    .legal-header { margin-bottom: 40px; }
+    .legal-content h2 { font-size: 1.4rem; }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="legal-section">
+  <div class="legal-container">
+    <div class="legal-header">
+      <h1>Privacy Policy</h1>
+      <p class="last-updated">Last Updated: April 8, 2026</p>
+    </div>
+
+    <div class="disclaimer-box">
+      <h3>Disclaimer</h3>
+      <p>Air Cool Tech Services is an independent service provider and is not affiliated with, endorsed by, or associated with any of the brands mentioned on this website (including but not limited to Daikin, LG, Samsung, Voltas, etc.). All brand names and logos are the property of their respective owners and are used here for identification purposes only.</p>
+    </div>
+
+    <div class="legal-content">
+      <h2>1. Introduction</h2>
+      <p>At Air Cool Tech Services, accessible from our website, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Air Cool Tech Services and how we use it.</p>
+      <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
+
+      <h2>2. Information We Collect</h2>
+      <p>The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.</p>
+      <p>If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</p>
+      <p>Information we collect through our contact forms includes:</p>
+      <ul>
+        <li>Name</li>
+        <li>Phone Number</li>
+        <li>Address / Location</li>
+        <li>Service required details</li>
+      </ul>
+
+      <h2>3. How We Use Your Information</h2>
+      <p>We use the information we collect in various ways, including to:</p>
+      <ul>
+        <li>Provide, operate, and maintain our website</li>
+        <li>Improve, personalize, and expand our website</li>
+        <li>Understand and analyze how you use our website</li>
+        <li>Develop new products, services, features, and functionality</li>
+        <li>Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the website, and for marketing and promotional purposes</li>
+        <li>Find and prevent fraud</li>
+      </ul>
+
+      <h2>4. Google Ads & Third-Party Cookies</h2>
+      <p>Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to your website or other websites.</p>
+      <p>Google's use of advertising cookies enables it and its partners to serve ads to your users based on their visit to your sites and/or other sites on the Internet.</p>
+      <p>Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank">Ads Settings</a>.</p>
+
+      <h2>5. Log Files</h2>
+      <p>Air Cool Tech Services follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable.</p>
+
+      <h2>6. Third-Party Privacy Policies</h2>
+      <p>Air Cool Tech Services' Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options.</p>
+
+      <h2>7. GDPR Data Protection Rights</h2>
+      <p>We would like to make sure you are fully aware of all of your data protection rights. Every user is entitled to the following:</p>
+      <ul>
+        <li>The right to access – You have the right to request copies of your personal data.</li>
+        <li>The right to rectification – You have the right to request that we correct any information you believe is inaccurate.</li>
+        <li>The right to erasure – You have the right to request that we erase your personal data, under certain conditions.</li>
+        <li>The right to object to processing – You have the right to object to our processing of your personal data, under certain conditions.</li>
+      </ul>
+
+      <h2>8. Contact Us</h2>
+      <p>If you have any questions about this Privacy Policy, please contact us:</p>
+      <ul>
+        <li>By visiting the contact page on our website</li>
+        <li>By phone: +91 86308 72674</li>
+      </ul>
+    </div>
+  </div>
+</section>
+{% endblock %}
